@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Windows下虚拟机安装Ubuntu18.04]]></title>
+    <url>%2F2019%2F02%2F19%2FLinux%E4%B8%8B%E5%AE%89%E8%A3%85Ubuntu18-04%2F</url>
+    <content type="text"><![CDATA[安装环境安装过程安装结束]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode使数组唯一的最下增量]]></title>
+    <url>%2F2019%2F02%2F19%2FLeetCode%E4%BD%BF%E6%95%B0%E7%BB%84%E5%94%AF%E4%B8%80%E7%9A%84%E6%9C%80%E4%B8%8B%E5%A2%9E%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[题目描述给定整数数组 A，每次 move 操作将会选择任意 A[i]，并将其递增 1。 返回使 A 中的每个值都是唯一的最少操作次数。 示例示例 1: 输入：[1,2,2]输出：1解释：经过一次 move 操作，数组将变为 [1, 2, 3]。示例 2: 输入：[3,2,1,2,1,7]输出：6解释：经过 6 次 move 操作，数组将变为 [3, 4, 1, 2, 5, 7]。可以看出 5 次或 5 次以下的 move 操作是不能让数组的每个值唯一的。 提示提示： 0 &lt;= A.length &lt;= 400000 &lt;= A[i] &lt; 40000 实现过程哈萨克洪都拉斯的核废料今安徽省 示例代码12345678910111213141516171819202122232425262728293031323334int minIncrementForUnique(int* A, int ASize) &#123; int compare(const void *a,const void *b); int i=0,j,k=0,s=0,ss=0; qsort(A,ASize,sizeof(int),compare); while(i&lt;ASize-1)&#123; if(A[i]&lt;A[i+1]) &#123;i++;continue;&#125; else&#123; if(A[i]&gt;A[i+1]) &#123;s+=(A[i]-A[i+1]);A[i+1] += (A[i]-A[i+1]);&#125; else&#123; for(j=i;A[j]==A[j+1]&amp;&amp;j&lt;ASize-1;j++) k++; A[i+k] += k; i +=k; while(k)&#123; ss+=k; k--; &#125; s+=ss; k=0; ss = 0; &#125; &#125; &#125; return s;&#125;int compare(const void *a,const void *b)&#123; return (*(int *)a-*(int * )b);&#125;]]></content>
+      <categories>
+        <category>算法学习</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode两数之和]]></title>
+    <url>%2F2019%2F02%2F19%2FLeetCode%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目描述给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。 你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。 示例给定 nums = [2, 7, 11, 15], target = 9 因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0, 1] 实现过程沙发即可收到回复爱上了话费卡是否 示例代码123456789101112131415/** * Note: The returned array must be malloced, assume caller calls free(). */int* twoSum(int* nums, int numsSize, int target)&#123; static int p[2] =&#123;0&#125;; for (int i = 0; i&lt;numsSize - 1; i++) for (int j = i + 1; j&lt;numsSize; j++) if (nums[i] + nums[j] == target)&#123; p[0] = i; p[1] = j; return p; &#125; return NULL;&#125;]]></content>
+      <categories>
+        <category>算法学习</category>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[ubuntu18.04LTS配置fastdfs]]></title>
+    <url>%2F2019%2F02%2F19%2Fubuntu18-04LTS%E9%85%8D%E7%BD%AEfastdfs%2F</url>
+    <content type="text"><![CDATA[Ubuntu18 安装 FastDFS安装环境撒大大打发发发大幅度阿凡达士大 软件配置撒大大打发发发大幅度阿凡达士大 安装过程撒大大打发发发大幅度阿凡达士大 1.创建**撒大大打发发发大幅度阿凡达士大 2. ***撒大大打发发发大幅度阿凡达士大 ##安装到此结束撒大大打发发发大幅度阿凡达士大 测试安装上传测试文件撒大大打发发发大幅度阿凡达士大 测试完成撒大大打发发发大幅度阿凡达士大]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>fastdfs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常见各种排序算法]]></title>
+    <url>%2F2019%2F02%2F19%2F%E5%B8%B8%E8%A7%81%E5%90%84%E7%A7%8D%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[冒泡排序撒大大打发发发大幅度阿凡达士大夫 选择排序撒大大打发发发大幅度阿凡达士大夫 快速排序撒大大打发发发大幅度阿凡达士大夫]]></content>
+      <categories>
+        <category>算法学习</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hexo编辑教程 （博客标题）]]></title>
+    <url>%2F2019%2F02%2F17%2Fhexo%2F</url>
+    <content type="text"><![CDATA[文章标题使用12345#这是一级标题，使用&quot;#&quot;标记## 这是二级标题，使用&quot;##&quot;标记### 这是三级标题，使用&quot;###&quot;标记#### 这是四级标题，使用&quot;####&quot;标记##### 这是五级标题，使用&quot;#####&quot;标记 字体12**加粗字体（前后两个*包围）***斜体（前后一个*包围）* 超链接12使用超链接时，用“[]”包围链接对象，后面紧跟用“（）”包围的链接url。例如 [百度](http://baidu.com) 点击此处，将链接至百度页面👉百度 代码块 12 英文半角状态下使用前后各一个``` 来包围代码 print(&quot;hello,world!&quot;) 无序1 无序2 1.有序12.有序2‘内嵌代码’···daimakuai··· 引用]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F02%2F17%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
