@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[初识JDBC]]></title>
+    <url>%2F2019%2F02%2F25%2F%E5%88%9D%E8%AF%86JDBC%2F</url>
+    <content type="text"><![CDATA[详解各个对象DriverManager 驱动管理对象Connection 数据库连接对象Statement 执行sql对象ResultSet 结果集对象Prepardestatement 执行sql对象获取数据库连接对象123当所连接的数据库为本地时，可忽略中间localhost参数Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://IP:port/&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);Connection conn = DriverManager.getConnection(&quot;jdbc:mysql:///&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;); 编写sql语句1String sql =&quot;update test1 set password = 400 where id = 4&quot;; 利用连接对象来获取 Statement 执行sql对象1Statement s = conn.createStatement(); 执行sql对象1int count = s.executeUpdate(sql); //增删改时使用此方法 完整代码1234567891011121314151617181920212223242526272829303132333435363738public static void main(String[] args) &#123; Statement temt = null; //设置全局变量 try 里conn和temt 方便最后释放 Connection conn = null; try &#123; Class.forName(&quot;com.mysql.jdbc.Driver&quot;); // 注册驱动 // 获取数据库连接对象 conn conn = DriverManager.getConnection(&quot;jdbc:mysql:///_test?useSSL=false&quot;,&quot;root&quot;,&quot;1111&quot;); String sql = &quot;insert into test1 values(\&quot;里斯\&quot;,\&quot;长三\&quot;)&quot;; //插入数据 // 利用数据库连接对象 进行获取执行sql对象 temt = conn.createStatement(); int count = temt.executeUpdate(sql); // 一般情况，返回值为 影响行数 System.out.println(count); if(count&gt;0) System.out.println(&quot;success!&quot;); else System.out.println(&quot;null!&quot;); &#125; catch (ClassNotFoundException e) &#123; e.printStackTrace(); &#125; catch (SQLException e) &#123; e.printStackTrace(); &#125;finally &#123; //避免释放空指针 if(temt!=null)&#123; try &#123; temt.close(); &#125; catch (SQLException e) &#123; e.printStackTrace(); &#125; &#125; if(conn!=null)&#123; try &#123; conn.close(); &#125; catch (SQLException e) &#123; e.printStackTrace(); &#125; &#125; &#125; &#125;]]></content>
+      <tags>
+        <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Windows下虚拟机安装Ubuntu18.04]]></title>
     <url>%2F2019%2F02%2F19%2FLinux%E4%B8%8B%E5%AE%89%E8%A3%85Ubuntu18-04%2F</url>
     <content type="text"><![CDATA[安装环境安装过程安装结束]]></content>

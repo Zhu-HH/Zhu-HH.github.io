@@ -190,7 +190,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a>
+                        <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a>
                     </div>
                 </section>
                 
@@ -264,6 +264,72 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-初识JDBC" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/02/25/初识JDBC/" class="article-date">
+      <time datetime="2019-02-25T14:52:00.000Z" itemprop="datePublished">2019-02-25</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/25/初识JDBC/">初识JDBC</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="详解各个对象"><a href="#详解各个对象" class="headerlink" title="详解各个对象"></a>详解各个对象</h3><h5 id="DriverManager-驱动管理对象"><a href="#DriverManager-驱动管理对象" class="headerlink" title="DriverManager 驱动管理对象"></a>DriverManager 驱动管理对象</h5><h5 id="Connection-数据库连接对象"><a href="#Connection-数据库连接对象" class="headerlink" title="Connection 数据库连接对象"></a>Connection 数据库连接对象</h5><h5 id="Statement-执行sql对象"><a href="#Statement-执行sql对象" class="headerlink" title="Statement 执行sql对象"></a>Statement 执行sql对象</h5><h5 id="ResultSet-结果集对象"><a href="#ResultSet-结果集对象" class="headerlink" title="ResultSet 结果集对象"></a>ResultSet 结果集对象</h5><h5 id="Prepardestatement-执行sql对象"><a href="#Prepardestatement-执行sql对象" class="headerlink" title="Prepardestatement 执行sql对象"></a>Prepardestatement 执行sql对象</h5><h4 id="获取数据库连接对象"><a href="#获取数据库连接对象" class="headerlink" title="获取数据库连接对象"></a>获取数据库连接对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当所连接的数据库为本地时，可忽略中间localhost参数</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://IP:port/&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql:///&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="编写sql语句"><a href="#编写sql语句" class="headerlink" title="编写sql语句"></a>编写sql语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql =&quot;update test1  set password = 400 where id = 4&quot;;</span><br></pre></td></tr></table></figure>
+<h4 id="利用连接对象来获取-Statement-执行sql对象"><a href="#利用连接对象来获取-Statement-执行sql对象" class="headerlink" title="利用连接对象来获取 Statement 执行sql对象"></a>利用连接对象来获取 Statement 执行sql对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Statement s = conn.createStatement();</span><br></pre></td></tr></table></figure>
+<h4 id="执行sql对象"><a href="#执行sql对象" class="headerlink" title="执行sql对象"></a>执行sql对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int count = s.executeUpdate(sql);   //增删改时使用此方法</span><br></pre></td></tr></table></figure>
+<h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)  &#123;</span><br><span class="line">        Statement temt = null; //设置全局变量 try 里conn和temt 方便最后释放</span><br><span class="line">        Connection conn = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;); // 注册驱动</span><br><span class="line">            // 获取数据库连接对象 conn</span><br><span class="line">            conn = DriverManager.getConnection(&quot;jdbc:mysql:///_test?useSSL=false&quot;,&quot;root&quot;,&quot;1111&quot;);</span><br><span class="line">            String sql = &quot;insert into test1 values(\&quot;里斯\&quot;,\&quot;长三\&quot;)&quot;; //插入数据</span><br><span class="line">            // 利用数据库连接对象 进行获取执行sql对象</span><br><span class="line">            temt = conn.createStatement();</span><br><span class="line">            int count = temt.executeUpdate(sql); // 一般情况，返回值为 影响行数</span><br><span class="line">            System.out.println(count);</span><br><span class="line">            if(count&gt;0)</span><br><span class="line">                System.out.println(&quot;success!&quot;);</span><br><span class="line">                else</span><br><span class="line">                    System.out.println(&quot;null!&quot;);</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            //避免释放空指针</span><br><span class="line">            if(temt!=null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    temt.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(conn!=null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    conn.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/">JDBC</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
   
     <article id="post-Linux下安装Ubuntu18-04" class="article article-type-post" itemscope itemprop="blogPost">
   

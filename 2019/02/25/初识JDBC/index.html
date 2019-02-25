@@ -7,20 +7,20 @@
   
   
   
-  <title>常见各种排序算法 | Hexo</title>
+  <title>初识JDBC | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="冒泡排序撒大大打发发发大幅度阿凡达士大夫 选择排序撒大大打发发发大幅度阿凡达士大夫 快速排序撒大大打发发发大幅度阿凡达士大夫">
-<meta name="keywords" content="排序">
+  <meta name="description" content="详解各个对象DriverManager 驱动管理对象Connection 数据库连接对象Statement 执行sql对象ResultSet 结果集对象Prepardestatement 执行sql对象获取数据库连接对象123当所连接的数据库为本地时，可忽略中间localhost参数Connection conn = DriverManager.getConnection(&amp;quot;jdbc:m">
+<meta name="keywords" content="JDBC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见各种排序算法">
-<meta property="og:url" content="http://yoursite.com/2019/02/19/常见各种排序算法/index.html">
+<meta property="og:title" content="初识JDBC">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/初识JDBC/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="冒泡排序撒大大打发发发大幅度阿凡达士大夫 选择排序撒大大打发发发大幅度阿凡达士大夫 快速排序撒大大打发发发大幅度阿凡达士大夫">
+<meta property="og:description" content="详解各个对象DriverManager 驱动管理对象Connection 数据库连接对象Statement 执行sql对象ResultSet 结果集对象Prepardestatement 执行sql对象获取数据库连接对象123当所连接的数据库为本地时，可忽略中间localhost参数Connection conn = DriverManager.getConnection(&amp;quot;jdbc:m">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-19T04:02:04.930Z">
+<meta property="og:updated_time" content="2019-02-25T14:53:13.325Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="常见各种排序算法">
-<meta name="twitter:description" content="冒泡排序撒大大打发发发大幅度阿凡达士大夫 选择排序撒大大打发发发大幅度阿凡达士大夫 快速排序撒大大打发发发大幅度阿凡达士大夫">
+<meta name="twitter:title" content="初识JDBC">
+<meta name="twitter:description" content="详解各个对象DriverManager 驱动管理对象Connection 数据库连接对象Statement 执行sql对象ResultSet 结果集对象Prepardestatement 执行sql对象获取数据库连接对象123当所连接的数据库为本地时，可忽略中间localhost参数Connection conn = DriverManager.getConnection(&amp;quot;jdbc:m">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -265,11 +265,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-常见各种排序算法" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-初识JDBC" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/02/19/常见各种排序算法/" class="article-date">
-      <time datetime="2019-02-19T04:00:07.000Z" itemprop="datePublished">2019-02-19</time>
+      <a href="/2019/02/25/初识JDBC/" class="article-date">
+      <time datetime="2019-02-25T14:52:00.000Z" itemprop="datePublished">2019-02-25</time>
 </a>
 
     </div>
@@ -283,7 +283,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      常见各种排序算法
+      初识JDBC
     </h1>
   
 
@@ -292,14 +292,10 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法学习/">算法学习</a>
-    </div>
-
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/">JDBC</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -309,9 +305,11 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>撒大大打发发发大幅度阿凡达士大夫</p>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>撒大大打发发发大幅度阿凡达士大夫</p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>撒大大打发发发大幅度阿凡达士大夫</p>
+        <h3 id="详解各个对象"><a href="#详解各个对象" class="headerlink" title="详解各个对象"></a>详解各个对象</h3><h5 id="DriverManager-驱动管理对象"><a href="#DriverManager-驱动管理对象" class="headerlink" title="DriverManager 驱动管理对象"></a>DriverManager 驱动管理对象</h5><h5 id="Connection-数据库连接对象"><a href="#Connection-数据库连接对象" class="headerlink" title="Connection 数据库连接对象"></a>Connection 数据库连接对象</h5><h5 id="Statement-执行sql对象"><a href="#Statement-执行sql对象" class="headerlink" title="Statement 执行sql对象"></a>Statement 执行sql对象</h5><h5 id="ResultSet-结果集对象"><a href="#ResultSet-结果集对象" class="headerlink" title="ResultSet 结果集对象"></a>ResultSet 结果集对象</h5><h5 id="Prepardestatement-执行sql对象"><a href="#Prepardestatement-执行sql对象" class="headerlink" title="Prepardestatement 执行sql对象"></a>Prepardestatement 执行sql对象</h5><h4 id="获取数据库连接对象"><a href="#获取数据库连接对象" class="headerlink" title="获取数据库连接对象"></a>获取数据库连接对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当所连接的数据库为本地时，可忽略中间localhost参数</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://IP:port/&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql:///&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br></pre></td></tr></table></figure>
+<h4 id="编写sql语句"><a href="#编写sql语句" class="headerlink" title="编写sql语句"></a>编写sql语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql =&quot;update test1  set password = 400 where id = 4&quot;;</span><br></pre></td></tr></table></figure>
+<h4 id="利用连接对象来获取-Statement-执行sql对象"><a href="#利用连接对象来获取-Statement-执行sql对象" class="headerlink" title="利用连接对象来获取 Statement 执行sql对象"></a>利用连接对象来获取 Statement 执行sql对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Statement s = conn.createStatement();</span><br></pre></td></tr></table></figure>
+<h4 id="执行sql对象"><a href="#执行sql对象" class="headerlink" title="执行sql对象"></a>执行sql对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int count = s.executeUpdate(sql);   //增删改时使用此方法</span><br></pre></td></tr></table></figure>
+<h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)  &#123;</span><br><span class="line">        Statement temt = null; //设置全局变量 try 里conn和temt 方便最后释放</span><br><span class="line">        Connection conn = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;); // 注册驱动</span><br><span class="line">            // 获取数据库连接对象 conn</span><br><span class="line">            conn = DriverManager.getConnection(&quot;jdbc:mysql:///_test?useSSL=false&quot;,&quot;root&quot;,&quot;1111&quot;);</span><br><span class="line">            String sql = &quot;insert into test1 values(\&quot;里斯\&quot;,\&quot;长三\&quot;)&quot;; //插入数据</span><br><span class="line">            // 利用数据库连接对象 进行获取执行sql对象</span><br><span class="line">            temt = conn.createStatement();</span><br><span class="line">            int count = temt.executeUpdate(sql); // 一般情况，返回值为 影响行数</span><br><span class="line">            System.out.println(count);</span><br><span class="line">            if(count&gt;0)</span><br><span class="line">                System.out.println(&quot;success!&quot;);</span><br><span class="line">                else</span><br><span class="line">                    System.out.println(&quot;null!&quot;);</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            //避免释放空指针</span><br><span class="line">            if(temt!=null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    temt.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(conn!=null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    conn.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -320,13 +318,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/02/19/常见各种排序算法/">常见各种排序算法</a></p>
+        <p><span>本文标题:</span><a href="/2019/02/25/初识JDBC/">初识JDBC</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 朱歪辉的奇异世界 的个人博客">朱歪辉的奇异世界</a></p>
-        <p><span>发布时间:</span>2019年02月19日 - 12时00分</p>
-        <p><span>最后更新:</span>2019年02月19日 - 12时02分</p>
+        <p><span>发布时间:</span>2019年02月25日 - 22时52分</p>
+        <p><span>最后更新:</span>2019年02月25日 - 22时53分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/02/19/常见各种排序算法/" title="常见各种排序算法">http://yoursite.com/2019/02/19/常见各种排序算法/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/02/19/常见各种排序算法/　　作者: 朱歪辉的奇异世界" title></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/02/25/初识JDBC/" title="初识JDBC">http://yoursite.com/2019/02/25/初识JDBC/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/02/25/初识JDBC/　　作者: 朱歪辉的奇异世界" title></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -337,18 +335,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/02/19/ubuntu18-04LTS配置fastdfs/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          ubuntu18.04LTS配置fastdfs
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/17/hexo/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hexo编辑教程 （博客标题）</div>
+    <a href="/2019/02/19/Linux下安装Ubuntu18-04/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Windows下虚拟机安装Ubuntu18.04</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -360,7 +349,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡排序"><span class="toc-number">1.</span> <span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择排序"><span class="toc-number">2.</span> <span class="toc-text">选择排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序"><span class="toc-number">3.</span> <span class="toc-text">快速排序</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#详解各个对象"><span class="toc-number">1.</span> <span class="toc-text">详解各个对象</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DriverManager-驱动管理对象"><span class="toc-number">1.0.1.</span> <span class="toc-text">DriverManager 驱动管理对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Connection-数据库连接对象"><span class="toc-number">1.0.2.</span> <span class="toc-text">Connection 数据库连接对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Statement-执行sql对象"><span class="toc-number">1.0.3.</span> <span class="toc-text">Statement 执行sql对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ResultSet-结果集对象"><span class="toc-number">1.0.4.</span> <span class="toc-text">ResultSet 结果集对象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Prepardestatement-执行sql对象"><span class="toc-number">1.0.5.</span> <span class="toc-text">Prepardestatement 执行sql对象</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#获取数据库连接对象"><span class="toc-number">1.1.</span> <span class="toc-text">获取数据库连接对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写sql语句"><span class="toc-number">1.2.</span> <span class="toc-text">编写sql语句</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#利用连接对象来获取-Statement-执行sql对象"><span class="toc-number">1.3.</span> <span class="toc-text">利用连接对象来获取 Statement 执行sql对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#执行sql对象"><span class="toc-number">1.4.</span> <span class="toc-text">执行sql对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#完整代码"><span class="toc-number">1.5.</span> <span class="toc-text">完整代码</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -433,13 +422,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/02/19/ubuntu18-04LTS配置fastdfs/" title="上一篇: ubuntu18.04LTS配置fastdfs">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/02/17/hexo/" title="下一篇: Hexo编辑教程 （博客标题）">
+            <a href="/2019/02/19/Linux下安装Ubuntu18-04/" title="下一篇: Windows下虚拟机安装Ubuntu18.04">
                 <i class="fa fa-angle-right"></i>
             </a>
         
