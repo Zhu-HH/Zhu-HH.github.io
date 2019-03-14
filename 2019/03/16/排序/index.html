@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>常见排序 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最快最简单的排序——桶排序序言在我们生活的这个世界中到处都是被排序过的东东。站队的时候会按照身高排序，考试的名次需要按照分数排序，网上购物的时候会按照价格排序，电子邮箱中的邮件按照时间排序……总之很多东东都需要排序，可以说排序是无处不在。现在我们举个具体的例子来介绍 一下排序算法。  期末考试完了老师要将同 学们的分数按照从高到低排序。小哼的班上只有 5个同学，这 5个同学分别考了 5分、3分、">
+<meta name="keywords" content="排序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见排序">
+<meta property="og:url" content="http://yoursite.com/2019/03/16/排序/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最快最简单的排序——桶排序序言在我们生活的这个世界中到处都是被排序过的东东。站队的时候会按照身高排序，考试的名次需要按照分数排序，网上购物的时候会按照价格排序，电子邮箱中的邮件按照时间排序……总之很多东东都需要排序，可以说排序是无处不在。现在我们举个具体的例子来介绍 一下排序算法。  期末考试完了老师要将同 学们的分数按照从高到低排序。小哼的班上只有 5个同学，这 5个同学分别考了 5分、3分、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-06T14:11:39.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见排序">
+<meta name="twitter:description" content="最快最简单的排序——桶排序序言在我们生活的这个世界中到处都是被排序过的东东。站队的时候会按照身高排序，考试的名次需要按照分数排序，网上购物的时候会按照价格排序，电子邮箱中的邮件按照时间排序……总之很多东东都需要排序，可以说排序是无处不在。现在我们举个具体的例子来介绍 一下排序算法。  期末考试完了老师要将同 学们的分数按照从高到低排序。小哼的班上只有 5个同学，这 5个同学分别考了 5分、3分、">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/tx.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/xtb.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">朱歪辉的奇异世界</a></h1>
+        </hgroup>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/development-tool">开发工具</a></li>
+                        
+                            <li><a href="/about">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/Zhu-HH" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="https://weibo.com/u/5710627813/home" title="weibo">weibo</a>
+                            
+                                <a class="fl rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 20px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/baidu_21483933">csdn</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://segmentfault.com/blog/maocg_web">segmentfault</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/users/eb37ef89c746/latest_articles">简书</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱编程,爱运动,爱的太多了!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">朱歪辉的奇异世界</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/xtb.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">朱歪辉的奇异世界</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/development-tool">开发工具</a></li>
+                
+                    <li><a href="/about">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/Zhu-HH" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="https://weibo.com/u/5710627813/home" title="weibo">weibo</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-排序" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/16/排序/" class="article-date">
+      <time datetime="2019-03-16T03:13:19.000Z" itemprop="datePublished">2019-03-16</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      常见排序
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/算法学习/">算法学习</a><a class="article-category-link" href="/categories/算法学习/《啊哈-算法》/">《啊哈!算法》</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="最快最简单的排序——桶排序"><a href="#最快最简单的排序——桶排序" class="headerlink" title="最快最简单的排序——桶排序"></a>最快最简单的排序——桶排序</h2><h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>在我们生活的这个世界中到处都是被排序过的东东。站队的时候会按照身高排序，考试的名次需要按照分数排序，网上购物的时候会按照价格排序，电子邮箱中的<br>邮件按照时间排序……总之很多东东都需要排序，可以说排序是无处不在。现在我们举个具体的例子来介绍 一下排序算法。 </p>
+<p>期末考试完了老师要将同 学们的分数按照从高到低排序。小哼的班上只有 5个同学<br>，这 5个同学分别考了 5分、3分、 5分、2分和 8分，哎考得真是惨不忍睹（满分是 10分）。<br>接下来将分数进行从大到小排序， 排序后是 8 5 5 3 2。你有没有什么好方法编写一段程序，<br>让计算机随机读入 5个数然后将这 5个数从大到小输出？</p>
+<p>我们这里只需借助一个一维数组就可以解决这个问题。请确定你真的仔细想过再往下 看哦。<br> 首先我们需要申请一个大小为 11 的数组 int a[11]。OK，现在你已经有了 11 个变量，</p>
+<p> 编 号从 a[0]~a[10]。刚开始的时候，我们将 a[0]~a[10]都初始化为 0，表示这些分数还都没有人 得过。</p>
+<p> 例如 a[0]等于 0就表示目前还没有人得过 0分，同理 a[1]等于 0就表示目前还没有人 得过 1分……a[10]等于 0就表示目前还没有人得过 10分。 </p>
+<p>下面开始处理每一个人的分数，第一个人的分数是 5分，我们就将相对应的 a[5]的值在 原来的基础增加 1，<br>即将 a[5]的值从 0改为 1，表示 5分出现过了一次。 </p>
+<p>第二个人的分数是 3分，我们就把相对应的 a[3]的值在原来的基础上增加 1，即将 a[3] 的值从 0改为 1，<br>表示 3分出现过了一次。 </p>
+<p>注意啦！第三个人的分数也是 5分，所以 a[5]的值需要在此基础上再增加 1，即将 a[5] 的值从 1改为 2，表示 5分出现过了两次。 </p>
+<p>按照刚才的方法处理第四个和第五个人的分数。终结果就是下面这个图啦。 </p>
+<p>你发现没有，a[0]~a[10]中的数值其实就是 0分到 10分每个分数出现的次数。接下来， 我们只需要将出现过的分数打印出来就可以了<br>，出现几次就打印几次，具体如下。<br>a[0]为 0，表示“0”没有出现过，不打印。<br> a[1]为 0，表示“1”没有出现过，不打印。<br> a[2]为 1，表示“2”出现过 1次，打印 2。<br> a[3]为 1，表示“3”出现过 1次，打印 3。<br> a[4]为 0，表示“4”没有出现过，不打印。<br> a[5]为 2，表示“5”出现过 2次，打印 5 5。<br> a[6]为 0，表示“6”没有出现过，不打印。<br> a[7]为 0，表示“7”没有出现过，不打印。<br> a[8]为 1，表示“8”出现过 1次，打印 8。<br> a[9]为 0，表示“9”没有出现过，不打印。<br> a[10]为 0，表示“10”没有出现过，不打印。<br> 终屏幕输出“2 3 5 5 8”，完整的代码如下。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> #include &lt;stdio.h&gt; </span><br><span class="line"> int main() &#123;</span><br><span class="line">	int a[11],i,j,t;     </span><br><span class="line">	for(i=0;i&lt;=10;i++)         </span><br><span class="line">		a[i]=0;  //初始化为0          </span><br><span class="line">	for(i=1;i&lt;=5;i++) &#123;   //循环读入5个数    </span><br><span class="line">        scanf(&quot;%d&quot;,&amp;t);  //把每一个数读到变量t中</span><br><span class="line">		a[t]++;  //进行计数   </span><br><span class="line">	&#125; </span><br><span class="line"> </span><br><span class="line">    for(i=0;i&lt;=10;i++)  //依次判断a[0]~a[10]        \</span><br><span class="line">		for(j=1;j&lt;=a[i];j++)  //出现了几次就打印几次             </span><br><span class="line">			printf(&quot;%d &quot;,i); </span><br><span class="line"> </span><br><span class="line">    getchar();getchar();      //这里的getchar();用来暂停程序，以便查看程序输出的内容     //也可以用system(&quot;pause&quot;);等来代替     </span><br><span class="line">	return 0; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后来说下时间复杂度的问题。代码中第 6行的循环一共循环了 m次（m为桶的个数）， 第 9行的代码循环了 n次（n为待排序数的个数），<br>第 14行和第 15行一共循环了 m+n次。 所以整个排序算法一共执行了 m+n+m+n次。我们用大写字母 O来表示时间复杂度，因此该<br>算法的时间复杂度是 O(m+n+m+n)即 O(2*(m+n))。我们在说时间复杂度的时候可以忽略较小 的常数，终桶排序的时间复杂度为 O(m+n)。<br>还有一点，在表示时间复杂度的时候，n和 m 通常用大写字母即 O(M+N)。 这是一个非常快的排序算法。桶排序从 1956 年就开始被使用，<br>该算法的基本思想是由 E.J.Issac和 R.C.Singleton提出来的。之前我说过，其实这并不是真正的桶排序算法，真正的 桶排序算法要比这个更加复杂。<br>但是考虑到此处是算法讲解的第一篇，我想还是越简单易懂越好，真正的桶排序留在以后再聊吧。需要说明一点的是：我们目前学习的简化版桶排序算<br>法，其本质上还不能算是一个真正意义上的排序算法。为什么呢？例如遇到下面这个例子就 没辙了。<br>现在分别有 5个人的名字和分数：huhu 5分、haha 3分、xixi 5分、hengheng 2分和 gaoshou 8分。请按照分数从高到低，输出他们的名字。<br>即应该输出 gaoshou、huhu、xixi、haha、hengheng。 发现问题了没有？如果使用我们刚才简化版的桶排序算法仅仅是把分数进行了排序。终输<br>出的也仅仅是分数，但没有对人本身进行排序。也就是说，我们现在并不知道排序后的分数 原本对应着哪一个人！<br>这该怎么办呢？不要着急，请看下节——冒泡排序。 </p>
+<h2 id="邻居好说话——冒泡排序"><a href="#邻居好说话——冒泡排序" class="headerlink" title="邻居好说话——冒泡排序"></a>邻居好说话——冒泡排序</h2><p>简化版的桶排序不仅仅有上一节所遗留的问题，更要命的是：它非常浪费空间！例如需 要排序数的范围是 0~2100000000之间，那你则需要申请 2100000001个变量，也就是说要写 成 int a[2100000001]。因为我们需要用 2100000001个“桶”来存储 0~2100000000之间每一 个数出现的次数。即便只给你 5个数进行排序（例如这 5个数是 1、1912345678、2100000000、 18000000和 912345678），你也仍然需要 2100000001个“桶”，这真是太浪费空间了！还有， 如果现在需要排序的不再是整数而是一些小数，比如将 5.56789、2.12、1.1、3.123、4.1234 这五个数进行从小到大排序又该怎么办呢？现在我们来学习另一种新的排序算法：冒泡排 序。它可以很好地解决这两个问题。 冒泡排序的基本思想是：每次比较两个相邻的元素，如果它们的顺序错误就把它们交换 过来。 例如我们需要将 12 35 99 18 76这 5个数进行从大到小的排序。既然是从大到小排序， 也就是说越小的越靠后，你是不是觉得我在说废话，但是这句话很关键(∩_∩)。 首先比较第 1位和第 2位的大小，现在第 1位是 12，第 2位是 35。发现 12比 35要小，<br>因为我们希望越小越靠后嘛，因此需要交换这两个数的位置。交换之后这 5 个数的顺序是 35 12 99 18 76。 按照刚才的方法，继续比较第 2位和第 3位的大小，第 2位是 12，第 3位是 99。12比 99要小，因此需要交换这两个数的位置。交换之后这 5个数的顺序是 35 99 12 18 76。 根据刚才的规则，继续比较第 3位和第 4位的大小，如果第 3位比第 4位小，则交换位 置。交换之后这 5个数的顺序是 35 99 18 12 76。 后，比较第 4位和第 5位。4次比较之后 5个数的顺序是 35 99 18 76 12。 经过 4 次比较后我们发现小的一个数已经就位（已经在后一位，请注意 12 这个数 的移动过程），是不是很神奇。现在再来回忆一下刚才比较的过程。每次都是比较相邻的两<br>个数，如果后面的数比前面的数大，则交换这两个数的位置。一直比较下去直到后两个数<br>比较完毕后，小的数就在后一个了。就如同是一个气泡，一步一步往后“翻滚”，直到 后一位。所以这个排序的方法有一个很好听的名字“冒泡排序”。 </p>
+<p>说到这里其实我们的排序只将 5个数中小的一个归位了。每将一个数归位我们将其称<br>因为我们希望越小越靠后嘛，因此需要交换这两个数的位置。交换之后这 5 个数的顺序是 35 12 99 18 76。 按照刚才的方法，继续比较第 2位和第 3位的大小，第 2位是 12，第 3位是 99。12比 99要小，因此需要交换这两个数的位置。交换之后这 5个数的顺序是 35 99 12 18 76。 根据刚才的规则，继续比较第 3位和第 4位的大小，如果第 3位比第 4位小，则交换位 置。交换之后这 5个数的顺序是 35 99 18 12 76。 后，比较第 4位和第 5位。4次比较之后 5个数的顺序是 35 99 18 76 12。 经过 4 次比较后我们发现小的一个数已经就位（已经在后一位，请注意 12 这个数 的移动过程），是不是很神奇。现在再来回忆一下刚才比较的过程。每次都是比较相邻的两<br>个数，如果后面的数比前面的数大，则交换这两个数的位置。一直比较下去直到后两个数<br>比较完毕后，小的数就在后一个了。就如同是一个气泡，一步一步往后“翻滚”，直到 后一位。所以这个排序的方法有一个很好听的名字“冒泡排序”。 </p>
+<p>说到这里其实我们的排序只将 5个数中小的一个归位了。每将一个数归位我们将其称为“一趟”。下面我们将继续重复刚才的过程，将剩下的 4个数一一归位。 好，现在开始“第二趟”，目标是将第 2小的数归位。首先还是先比较第 1位和第 2位， 如果第 1位比第 2位小，则交换位置。交换之后这 5个数的顺序是 99 35 18 76 12。接下来你 应该都会了，依次比较第 2位和第 3位，第 3位和第 4位。注意此时已经不需要再比较第 4 位和第 5位。因为在第一趟结束后已经可以确定第 5位上放的是小的了。第二趟结束之后 这 5个数的顺序是 99 35 76 18 12。 “第三趟”也是一样的。第三趟之后这 5个数的顺序是 99 76 35 18 12。 现在到了后一趟“第四趟”。有的同学又要问了，这不是已经排好了吗？还要继续？<br>当然，这里纯属巧合，你若用别的数试一试可能就不是了。你能找出这样的数据样例来吗？ 请试一试。 “冒泡排序”的原理是：每一趟只能确定将一个数归位。即第一趟只能确定将末位上的 数（即第 5位）归位，第二趟只能将倒数第 2位上的数（即第 4位）归位，第三趟只能将倒 数第 3位上的数（即第 3位）归位，而现在前面还有两个位置上的数没有归位，因此我们仍 然需要进行“第四趟”。 “第四趟”只需要比较第 1 位和第 2 位的大小。因为后面三个位置上的数归位了，现在 第 1位是 99，第 2位是 76，无需交换。这 5个数的顺序不变仍然是 99 76 35 18 12。到此排 序完美结束了，5个数已经有 4个数归位，那后一个数也只能放在第 1位了。 后我们总结一下：如果有 n 个数进行排序，只需将 n1 个数归位，也就是说要进行 n-1 趟操作。而“每一趟”都需要从第 1 位开始进行相邻两个数的比较，将较小的一个数放 在后面，比较完毕后向后挪一位继续比较下面两个相邻数的大小，重复此步骤，直到后一<br>个尚未归位的数，已经归位的数则无需再进行比较（已经归位的数你还比较个啥，浪费表情）。</p>
+<p>这个算法是不是很强悍？记得我每次拍集体照的时候就总是被别人换来换去的，当时特<br>别烦。不知道发明此算法的人当时的灵感是否来源于此。啰里吧嗦地说了这么多，下面是代 码。建议先自己尝试去实现一下看看，再来看我是如何实现的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; int main() &#123;</span><br><span class="line">     int a[100],i,j,t,n;</span><br><span class="line">     scanf(&quot;%d&quot;,&amp;n);  //输入一个数n，表示接下来有n个数     </span><br><span class="line">	 for(i=1;i&lt;=n;i++)  //循环读入n个数到数组a中         </span><br><span class="line">		scanf(&quot;%d&quot;,&amp;a[i]); </span><br><span class="line"></span><br><span class="line">    //冒泡排序的核心部分     </span><br><span class="line">	for(i=1;i&lt;=n-1;i++)&#123;      //n个数排序，只用进行n-1趟         </span><br><span class="line">		for(j=1;j&lt;=n-i;j++) &#123;    //从第1位开始比较直到后一个尚未归位的数，想一想为什 么到n-i就可以了。                  </span><br><span class="line">			if(a[j]&lt;a[j+1]) &#123;  //比较大小并交换             </span><br><span class="line">				t=a[j]; a[j]=a[j+1]; a[j+1]=t;  </span><br><span class="line">			&#125;         </span><br><span class="line">		&#125;     </span><br><span class="line">	&#125;     </span><br><span class="line">	for(i=1;i&lt;=n;i++)  //输出结果         </span><br><span class="line">		printf(&quot;%d &quot;,a[i]);        </span><br><span class="line">		getchar();getchar();    </span><br><span class="line">		return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>稍加修饰<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; </span><br><span class="line">struct student &#123;     </span><br><span class="line">	char name[21];     </span><br><span class="line">	char score; </span><br><span class="line">&#125;;//这里创建了一个结构体用来存储姓名和分数 </span><br><span class="line">int main() &#123;</span><br><span class="line">     struct student a[100],t;</span><br><span class="line">     int i,j,n;</span><br><span class="line">     scanf(&quot;%d&quot;,&amp;n); //输入一个数n</span><br><span class="line">     for(i=1;i&lt;=n;i++) //循环读入n个人名和分数</span><br><span class="line">		scanf(&quot;%s %d&quot;,a[i].name,&amp;a[i].score); </span><br><span class="line">    //按分数从高到低进行排序</span><br><span class="line">	for(i=1;i&lt;=n-1;i++)&#123;</span><br><span class="line">		for(j=1;j&lt;=n-i;j++)&#123;             </span><br><span class="line">			if(a[j].score&lt;a[j+1].score)&#123;//对分数进行比较</span><br><span class="line">				t=a[j]; a[j]=a[j+1]; a[j+1]=t;  </span><br><span class="line">			&#125;         </span><br><span class="line">		&#125;     </span><br><span class="line">	&#125;</span><br><span class="line">	for(i=1;i&lt;=n;i++)//输出人名</span><br><span class="line">		printf(&quot;%s\n&quot;,a[i].name); </span><br><span class="line"> </span><br><span class="line">    getchar();getchar();     </span><br><span class="line">	return 0;</span><br><span class="line">	&#125; </span><br><span class="line">可以输入以下数据进行验证。 </span><br><span class="line">5 huhu 5 haha 3 xixi 5 hengheng 2 gaoshou 8 </span><br><span class="line">运行结果是： </span><br><span class="line">gaoshou huhu xixi haha hengheng</span><br></pre></td></tr></table></figure></p>
+<p>冒泡排序的核心部分是双重嵌套循环。不难看出冒泡排序的时间复杂度是 O(N 2)。这是 一个非常高的时间复杂度。冒泡排序早在 1956 年就有人开始研究，之后有很多人都尝试过 对冒泡排序进行改进，但结果却令人失望。如 Donald E. Knuth（中文名为高德纳，1974 年 图灵奖获得者）所说：“冒泡排序除了它迷人的名字和导致了某些有趣的理论问题这一事实<br>之外，似乎没有什么值得推荐的。”你可能要问：那还有没有更好的排序算法呢？不要走开， 请看下节——快速排序</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">1.确定哨兵行动范围 left right 且 left 始终小于 right </span><br><span class="line">2.确定每次范围的 基准数 temp  </span><br><span class="line">3.left哨兵寻找比基准数大的第一个数字 right 哨兵从右往左寻找第一个小于基准数的数字</span><br><span class="line">4. left和right哨兵找到后  相互交换位置</span><br><span class="line">5.重复3-4 直到 两个哨兵相遇 </span><br><span class="line">6.哨兵相遇过后，将 left哨兵和 temp 基准数交换(基准数归位)</span><br><span class="line">7.再次确定哨兵行动范围 left 不动 right 更改为 哨兵相遇的前一个数组位置(处理左边) -&gt;执行 2-6步 </span><br><span class="line">8.再次确定哨兵行动范围 left更改为 哨兵相遇的后一个数组位置  right 不动 (处理右边) -&gt;执行 2-6步</span><br><span class="line">*/ </span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int a[101],n;//定义全局变量，这两个变量需要在子函数中使用  </span><br><span class="line"> </span><br><span class="line">void quicksort(int left,int right) &#123;</span><br><span class="line">    int i,j,t,temp;</span><br><span class="line">	if(left&gt;right)</span><br><span class="line">	    return;</span><br><span class="line">				  </span><br><span class="line">	temp=a[left]; //temp中存的就是基准数</span><br><span class="line">	i=left;     </span><br><span class="line">	j=right;     </span><br><span class="line">	while(i!=j)&#123;</span><br><span class="line">	    //顺序很重要，要先从右往左找</span><br><span class="line">        while(a[j]&gt;=temp &amp;&amp; i&lt;j)     // right 哨兵一直往左走 直到遇到比基准数小的数 或  遇到 left哨兵(到基准数) </span><br><span class="line">            j--;</span><br><span class="line">        //再从左往右找</span><br><span class="line">		while(a[i]&lt;=temp &amp;&amp; i&lt;j)     //       left 哨兵一直右走，直到找到大于基准数 或 和 right哨兵相遇 </span><br><span class="line">		    i++; </span><br><span class="line"> </span><br><span class="line">        //交换两个数在数组中的位置      </span><br><span class="line">		if(i&lt;j) &#123;         //当哨兵i和哨兵j没有相遇时      </span><br><span class="line">	        t=a[i];</span><br><span class="line">			a[i]=a[j];</span><br><span class="line">			a[j]=t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;     </span><br><span class="line">	</span><br><span class="line">	//终将基准数归位  </span><br><span class="line">    a[left]=a[i];</span><br><span class="line">	a[i]=temp;</span><br><span class="line">	quicksort(left,i-1);//继续处理左边的，这里是一个递归的过程</span><br><span class="line">	quicksort(i+1,right);//继续处理右边的，这里是一个递归的过程 </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">int main() &#123;</span><br><span class="line">    int i,j,t;     //读入数据</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(i=1;i&lt;=n;i++) </span><br><span class="line">	    scanf(&quot;%d&quot;,&amp;a[i]); </span><br><span class="line"> </span><br><span class="line">    quicksort(1,n); //快速排序调用           </span><br><span class="line">	//输出排序后的结果     </span><br><span class="line">	for(i=1;i&lt;=n;i++)</span><br><span class="line">	    printf(&quot;%d &quot;,a[i]); </span><br><span class="line"> </span><br><span class="line">    getchar();</span><br><span class="line">	getchar();</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/16/排序/">常见排序</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 朱歪辉的奇异世界 的个人博客">朱歪辉的奇异世界</a></p>
+        <p><span>发布时间:</span>2019年03月16日 - 11时13分</p>
+        <p><span>最后更新:</span>2019年03月06日 - 22时11分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/16/排序/" title="常见排序">http://yoursite.com/2019/03/16/排序/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/03/16/排序/　　作者: 朱歪辉的奇异世界" title></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/14/罗马数字转整数/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">罗马数字转整数</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#最快最简单的排序——桶排序"><span class="toc-number">1.</span> <span class="toc-text">最快最简单的排序——桶排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#序言"><span class="toc-number">1.1.</span> <span class="toc-text">序言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#邻居好说话——冒泡排序"><span class="toc-number">2.</span> <span class="toc-text">邻居好说话——冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序"><span class="toc-number">3.</span> <span class="toc-text">快速排序</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/03/14/罗马数字转整数/" title="下一篇: 罗马数字转整数">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/16/排序/">常见排序</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/14/罗马数字转整数/">罗马数字转整数</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/new 1/">初识Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/01/初识Docker/">初识Docker</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/27/JDBC封装数据信息/">JDBC封装数据信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/25/初识JDBC/">初识JDBC</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/19/Linux下安装Ubuntu18-04/">Windows下虚拟机安装Ubuntu18.04</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/19/LeetCode使数组唯一的最下增量/">LeetCode使数组唯一的最下增量</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/19/LeetCode两数之和/">LeetCode两数之和</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/19/ubuntu18-04LTS配置fastdfs/">ubuntu18.04LTS配置fastdfs</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/19/常见各种排序算法/">常见各种排序算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/hexo/">Hexo编辑教程 （博客标题）</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/hello-world/">Hello World</a></li></ul>
+    
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 朱歪辉的奇异世界
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/maochunguang" target="_blank">Blog</a> by tommy
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+    </div>
+    
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

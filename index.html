@@ -190,7 +190,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/JDBC/" style="font-size: 10px;">JDBC</a> <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 10px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a>
+                        <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 20px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
                     </div>
                 </section>
                 
@@ -265,6 +265,366 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-排序" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/16/排序/" class="article-date">
+      <time datetime="2019-03-16T03:13:19.000Z" itemprop="datePublished">2019-03-16</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/16/排序/">常见排序</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="最快最简单的排序——桶排序"><a href="#最快最简单的排序——桶排序" class="headerlink" title="最快最简单的排序——桶排序"></a>最快最简单的排序——桶排序</h2><h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>在我们生活的这个世界中到处都是被排序过的东东。站队的时候会按照身高排序，考试的名次需要按照分数排序，网上购物的时候会按照价格排序，电子邮箱中的<br>邮件按照时间排序……总之很多东东都需要排序，可以说排序是无处不在。现在我们举个具体的例子来介绍 一下排序算法。 </p>
+<p>期末考试完了老师要将同 学们的分数按照从高到低排序。小哼的班上只有 5个同学<br>，这 5个同学分别考了 5分、3分、 5分、2分和 8分，哎考得真是惨不忍睹（满分是 10分）。<br>接下来将分数进行从大到小排序， 排序后是 8 5 5 3 2。你有没有什么好方法编写一段程序，<br>让计算机随机读入 5个数然后将这 5个数从大到小输出？</p>
+<p>我们这里只需借助一个一维数组就可以解决这个问题。请确定你真的仔细想过再往下 看哦。<br> 首先我们需要申请一个大小为 11 的数组 int a[11]。OK，现在你已经有了 11 个变量，</p>
+<p> 编 号从 a[0]~a[10]。刚开始的时候，我们将 a[0]~a[10]都初始化为 0，表示这些分数还都没有人 得过。</p>
+<p> 例如 a[0]等于 0就表示目前还没有人得过 0分，同理 a[1]等于 0就表示目前还没有人 得过 1分……a[10]等于 0就表示目前还没有人得过 10分。 </p>
+<p>下面开始处理每一个人的分数，第一个人的分数是 5分，我们就将相对应的 a[5]的值在 原来的基础增加 1，<br>即将 a[5]的值从 0改为 1，表示 5分出现过了一次。 </p>
+<p>第二个人的分数是 3分，我们就把相对应的 a[3]的值在原来的基础上增加 1，即将 a[3] 的值从 0改为 1，<br>表示 3分出现过了一次。 </p>
+<p>注意啦！第三个人的分数也是 5分，所以 a[5]的值需要在此基础上再增加 1，即将 a[5] 的值从 1改为 2，表示 5分出现过了两次。 </p>
+<p>按照刚才的方法处理第四个和第五个人的分数。终结果就是下面这个图啦。 </p>
+<p>你发现没有，a[0]~a[10]中的数值其实就是 0分到 10分每个分数出现的次数。接下来， 我们只需要将出现过的分数打印出来就可以了<br>，出现几次就打印几次，具体如下。<br>a[0]为 0，表示“0”没有出现过，不打印。<br> a[1]为 0，表示“1”没有出现过，不打印。<br> a[2]为 1，表示“2”出现过 1次，打印 2。<br> a[3]为 1，表示“3”出现过 1次，打印 3。<br> a[4]为 0，表示“4”没有出现过，不打印。<br> a[5]为 2，表示“5”出现过 2次，打印 5 5。<br> a[6]为 0，表示“6”没有出现过，不打印。<br> a[7]为 0，表示“7”没有出现过，不打印。<br> a[8]为 1，表示“8”出现过 1次，打印 8。<br> a[9]为 0，表示“9”没有出现过，不打印。<br> a[10]为 0，表示“10”没有出现过，不打印。<br> 终屏幕输出“2 3 5 5 8”，完整的代码如下。<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> #include &lt;stdio.h&gt; </span><br><span class="line"> int main() &#123;</span><br><span class="line">	int a[11],i,j,t;     </span><br><span class="line">	for(i=0;i&lt;=10;i++)         </span><br><span class="line">		a[i]=0;  //初始化为0          </span><br><span class="line">	for(i=1;i&lt;=5;i++) &#123;   //循环读入5个数    </span><br><span class="line">        scanf(&quot;%d&quot;,&amp;t);  //把每一个数读到变量t中</span><br><span class="line">		a[t]++;  //进行计数   </span><br><span class="line">	&#125; </span><br><span class="line"> </span><br><span class="line">    for(i=0;i&lt;=10;i++)  //依次判断a[0]~a[10]        \</span><br><span class="line">		for(j=1;j&lt;=a[i];j++)  //出现了几次就打印几次             </span><br><span class="line">			printf(&quot;%d &quot;,i); </span><br><span class="line"> </span><br><span class="line">    getchar();getchar();      //这里的getchar();用来暂停程序，以便查看程序输出的内容     //也可以用system(&quot;pause&quot;);等来代替     </span><br><span class="line">	return 0; </span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后来说下时间复杂度的问题。代码中第 6行的循环一共循环了 m次（m为桶的个数）， 第 9行的代码循环了 n次（n为待排序数的个数），<br>第 14行和第 15行一共循环了 m+n次。 所以整个排序算法一共执行了 m+n+m+n次。我们用大写字母 O来表示时间复杂度，因此该<br>算法的时间复杂度是 O(m+n+m+n)即 O(2*(m+n))。我们在说时间复杂度的时候可以忽略较小 的常数，终桶排序的时间复杂度为 O(m+n)。<br>还有一点，在表示时间复杂度的时候，n和 m 通常用大写字母即 O(M+N)。 这是一个非常快的排序算法。桶排序从 1956 年就开始被使用，<br>该算法的基本思想是由 E.J.Issac和 R.C.Singleton提出来的。之前我说过，其实这并不是真正的桶排序算法，真正的 桶排序算法要比这个更加复杂。<br>但是考虑到此处是算法讲解的第一篇，我想还是越简单易懂越好，真正的桶排序留在以后再聊吧。需要说明一点的是：我们目前学习的简化版桶排序算<br>法，其本质上还不能算是一个真正意义上的排序算法。为什么呢？例如遇到下面这个例子就 没辙了。<br>现在分别有 5个人的名字和分数：huhu 5分、haha 3分、xixi 5分、hengheng 2分和 gaoshou 8分。请按照分数从高到低，输出他们的名字。<br>即应该输出 gaoshou、huhu、xixi、haha、hengheng。 发现问题了没有？如果使用我们刚才简化版的桶排序算法仅仅是把分数进行了排序。终输<br>出的也仅仅是分数，但没有对人本身进行排序。也就是说，我们现在并不知道排序后的分数 原本对应着哪一个人！<br>这该怎么办呢？不要着急，请看下节——冒泡排序。 </p>
+<h2 id="邻居好说话——冒泡排序"><a href="#邻居好说话——冒泡排序" class="headerlink" title="邻居好说话——冒泡排序"></a>邻居好说话——冒泡排序</h2><p>简化版的桶排序不仅仅有上一节所遗留的问题，更要命的是：它非常浪费空间！例如需 要排序数的范围是 0~2100000000之间，那你则需要申请 2100000001个变量，也就是说要写 成 int a[2100000001]。因为我们需要用 2100000001个“桶”来存储 0~2100000000之间每一 个数出现的次数。即便只给你 5个数进行排序（例如这 5个数是 1、1912345678、2100000000、 18000000和 912345678），你也仍然需要 2100000001个“桶”，这真是太浪费空间了！还有， 如果现在需要排序的不再是整数而是一些小数，比如将 5.56789、2.12、1.1、3.123、4.1234 这五个数进行从小到大排序又该怎么办呢？现在我们来学习另一种新的排序算法：冒泡排 序。它可以很好地解决这两个问题。 冒泡排序的基本思想是：每次比较两个相邻的元素，如果它们的顺序错误就把它们交换 过来。 例如我们需要将 12 35 99 18 76这 5个数进行从大到小的排序。既然是从大到小排序， 也就是说越小的越靠后，你是不是觉得我在说废话，但是这句话很关键(∩_∩)。 首先比较第 1位和第 2位的大小，现在第 1位是 12，第 2位是 35。发现 12比 35要小，<br>因为我们希望越小越靠后嘛，因此需要交换这两个数的位置。交换之后这 5 个数的顺序是 35 12 99 18 76。 按照刚才的方法，继续比较第 2位和第 3位的大小，第 2位是 12，第 3位是 99。12比 99要小，因此需要交换这两个数的位置。交换之后这 5个数的顺序是 35 99 12 18 76。 根据刚才的规则，继续比较第 3位和第 4位的大小，如果第 3位比第 4位小，则交换位 置。交换之后这 5个数的顺序是 35 99 18 12 76。 后，比较第 4位和第 5位。4次比较之后 5个数的顺序是 35 99 18 76 12。 经过 4 次比较后我们发现小的一个数已经就位（已经在后一位，请注意 12 这个数 的移动过程），是不是很神奇。现在再来回忆一下刚才比较的过程。每次都是比较相邻的两<br>个数，如果后面的数比前面的数大，则交换这两个数的位置。一直比较下去直到后两个数<br>比较完毕后，小的数就在后一个了。就如同是一个气泡，一步一步往后“翻滚”，直到 后一位。所以这个排序的方法有一个很好听的名字“冒泡排序”。 </p>
+<p>说到这里其实我们的排序只将 5个数中小的一个归位了。每将一个数归位我们将其称<br>因为我们希望越小越靠后嘛，因此需要交换这两个数的位置。交换之后这 5 个数的顺序是 35 12 99 18 76。 按照刚才的方法，继续比较第 2位和第 3位的大小，第 2位是 12，第 3位是 99。12比 99要小，因此需要交换这两个数的位置。交换之后这 5个数的顺序是 35 99 12 18 76。 根据刚才的规则，继续比较第 3位和第 4位的大小，如果第 3位比第 4位小，则交换位 置。交换之后这 5个数的顺序是 35 99 18 12 76。 后，比较第 4位和第 5位。4次比较之后 5个数的顺序是 35 99 18 76 12。 经过 4 次比较后我们发现小的一个数已经就位（已经在后一位，请注意 12 这个数 的移动过程），是不是很神奇。现在再来回忆一下刚才比较的过程。每次都是比较相邻的两<br>个数，如果后面的数比前面的数大，则交换这两个数的位置。一直比较下去直到后两个数<br>比较完毕后，小的数就在后一个了。就如同是一个气泡，一步一步往后“翻滚”，直到 后一位。所以这个排序的方法有一个很好听的名字“冒泡排序”。 </p>
+<p>说到这里其实我们的排序只将 5个数中小的一个归位了。每将一个数归位我们将其称为“一趟”。下面我们将继续重复刚才的过程，将剩下的 4个数一一归位。 好，现在开始“第二趟”，目标是将第 2小的数归位。首先还是先比较第 1位和第 2位， 如果第 1位比第 2位小，则交换位置。交换之后这 5个数的顺序是 99 35 18 76 12。接下来你 应该都会了，依次比较第 2位和第 3位，第 3位和第 4位。注意此时已经不需要再比较第 4 位和第 5位。因为在第一趟结束后已经可以确定第 5位上放的是小的了。第二趟结束之后 这 5个数的顺序是 99 35 76 18 12。 “第三趟”也是一样的。第三趟之后这 5个数的顺序是 99 76 35 18 12。 现在到了后一趟“第四趟”。有的同学又要问了，这不是已经排好了吗？还要继续？<br>当然，这里纯属巧合，你若用别的数试一试可能就不是了。你能找出这样的数据样例来吗？ 请试一试。 “冒泡排序”的原理是：每一趟只能确定将一个数归位。即第一趟只能确定将末位上的 数（即第 5位）归位，第二趟只能将倒数第 2位上的数（即第 4位）归位，第三趟只能将倒 数第 3位上的数（即第 3位）归位，而现在前面还有两个位置上的数没有归位，因此我们仍 然需要进行“第四趟”。 “第四趟”只需要比较第 1 位和第 2 位的大小。因为后面三个位置上的数归位了，现在 第 1位是 99，第 2位是 76，无需交换。这 5个数的顺序不变仍然是 99 76 35 18 12。到此排 序完美结束了，5个数已经有 4个数归位，那后一个数也只能放在第 1位了。 后我们总结一下：如果有 n 个数进行排序，只需将 n1 个数归位，也就是说要进行 n-1 趟操作。而“每一趟”都需要从第 1 位开始进行相邻两个数的比较，将较小的一个数放 在后面，比较完毕后向后挪一位继续比较下面两个相邻数的大小，重复此步骤，直到后一<br>个尚未归位的数，已经归位的数则无需再进行比较（已经归位的数你还比较个啥，浪费表情）。</p>
+<p>这个算法是不是很强悍？记得我每次拍集体照的时候就总是被别人换来换去的，当时特<br>别烦。不知道发明此算法的人当时的灵感是否来源于此。啰里吧嗦地说了这么多，下面是代 码。建议先自己尝试去实现一下看看，再来看我是如何实现的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; int main() &#123;</span><br><span class="line">     int a[100],i,j,t,n;</span><br><span class="line">     scanf(&quot;%d&quot;,&amp;n);  //输入一个数n，表示接下来有n个数     </span><br><span class="line">	 for(i=1;i&lt;=n;i++)  //循环读入n个数到数组a中         </span><br><span class="line">		scanf(&quot;%d&quot;,&amp;a[i]); </span><br><span class="line"></span><br><span class="line">    //冒泡排序的核心部分     </span><br><span class="line">	for(i=1;i&lt;=n-1;i++)&#123;      //n个数排序，只用进行n-1趟         </span><br><span class="line">		for(j=1;j&lt;=n-i;j++) &#123;    //从第1位开始比较直到后一个尚未归位的数，想一想为什 么到n-i就可以了。                  </span><br><span class="line">			if(a[j]&lt;a[j+1]) &#123;  //比较大小并交换             </span><br><span class="line">				t=a[j]; a[j]=a[j+1]; a[j+1]=t;  </span><br><span class="line">			&#125;         </span><br><span class="line">		&#125;     </span><br><span class="line">	&#125;     </span><br><span class="line">	for(i=1;i&lt;=n;i++)  //输出结果         </span><br><span class="line">		printf(&quot;%d &quot;,a[i]);        </span><br><span class="line">		getchar();getchar();    </span><br><span class="line">		return 0; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>稍加修饰<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; </span><br><span class="line">struct student &#123;     </span><br><span class="line">	char name[21];     </span><br><span class="line">	char score; </span><br><span class="line">&#125;;//这里创建了一个结构体用来存储姓名和分数 </span><br><span class="line">int main() &#123;</span><br><span class="line">     struct student a[100],t;</span><br><span class="line">     int i,j,n;</span><br><span class="line">     scanf(&quot;%d&quot;,&amp;n); //输入一个数n</span><br><span class="line">     for(i=1;i&lt;=n;i++) //循环读入n个人名和分数</span><br><span class="line">		scanf(&quot;%s %d&quot;,a[i].name,&amp;a[i].score); </span><br><span class="line">    //按分数从高到低进行排序</span><br><span class="line">	for(i=1;i&lt;=n-1;i++)&#123;</span><br><span class="line">		for(j=1;j&lt;=n-i;j++)&#123;             </span><br><span class="line">			if(a[j].score&lt;a[j+1].score)&#123;//对分数进行比较</span><br><span class="line">				t=a[j]; a[j]=a[j+1]; a[j+1]=t;  </span><br><span class="line">			&#125;         </span><br><span class="line">		&#125;     </span><br><span class="line">	&#125;</span><br><span class="line">	for(i=1;i&lt;=n;i++)//输出人名</span><br><span class="line">		printf(&quot;%s\n&quot;,a[i].name); </span><br><span class="line"> </span><br><span class="line">    getchar();getchar();     </span><br><span class="line">	return 0;</span><br><span class="line">	&#125; </span><br><span class="line">可以输入以下数据进行验证。 </span><br><span class="line">5 huhu 5 haha 3 xixi 5 hengheng 2 gaoshou 8 </span><br><span class="line">运行结果是： </span><br><span class="line">gaoshou huhu xixi haha hengheng</span><br></pre></td></tr></table></figure></p>
+<p>冒泡排序的核心部分是双重嵌套循环。不难看出冒泡排序的时间复杂度是 O(N 2)。这是 一个非常高的时间复杂度。冒泡排序早在 1956 年就有人开始研究，之后有很多人都尝试过 对冒泡排序进行改进，但结果却令人失望。如 Donald E. Knuth（中文名为高德纳，1974 年 图灵奖获得者）所说：“冒泡排序除了它迷人的名字和导致了某些有趣的理论问题这一事实<br>之外，似乎没有什么值得推荐的。”你可能要问：那还有没有更好的排序算法呢？不要走开， 请看下节——快速排序</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">1.确定哨兵行动范围 left right 且 left 始终小于 right </span><br><span class="line">2.确定每次范围的 基准数 temp  </span><br><span class="line">3.left哨兵寻找比基准数大的第一个数字 right 哨兵从右往左寻找第一个小于基准数的数字</span><br><span class="line">4. left和right哨兵找到后  相互交换位置</span><br><span class="line">5.重复3-4 直到 两个哨兵相遇 </span><br><span class="line">6.哨兵相遇过后，将 left哨兵和 temp 基准数交换(基准数归位)</span><br><span class="line">7.再次确定哨兵行动范围 left 不动 right 更改为 哨兵相遇的前一个数组位置(处理左边) -&gt;执行 2-6步 </span><br><span class="line">8.再次确定哨兵行动范围 left更改为 哨兵相遇的后一个数组位置  right 不动 (处理右边) -&gt;执行 2-6步</span><br><span class="line">*/ </span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int a[101],n;//定义全局变量，这两个变量需要在子函数中使用  </span><br><span class="line"> </span><br><span class="line">void quicksort(int left,int right) &#123;</span><br><span class="line">    int i,j,t,temp;</span><br><span class="line">	if(left&gt;right)</span><br><span class="line">	    return;</span><br><span class="line">				  </span><br><span class="line">	temp=a[left]; //temp中存的就是基准数</span><br><span class="line">	i=left;     </span><br><span class="line">	j=right;     </span><br><span class="line">	while(i!=j)&#123;</span><br><span class="line">	    //顺序很重要，要先从右往左找</span><br><span class="line">        while(a[j]&gt;=temp &amp;&amp; i&lt;j)     // right 哨兵一直往左走 直到遇到比基准数小的数 或  遇到 left哨兵(到基准数) </span><br><span class="line">            j--;</span><br><span class="line">        //再从左往右找</span><br><span class="line">		while(a[i]&lt;=temp &amp;&amp; i&lt;j)     //       left 哨兵一直右走，直到找到大于基准数 或 和 right哨兵相遇 </span><br><span class="line">		    i++; </span><br><span class="line"> </span><br><span class="line">        //交换两个数在数组中的位置      </span><br><span class="line">		if(i&lt;j) &#123;         //当哨兵i和哨兵j没有相遇时      </span><br><span class="line">	        t=a[i];</span><br><span class="line">			a[i]=a[j];</span><br><span class="line">			a[j]=t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;     </span><br><span class="line">	</span><br><span class="line">	//终将基准数归位  </span><br><span class="line">    a[left]=a[i];</span><br><span class="line">	a[i]=temp;</span><br><span class="line">	quicksort(left,i-1);//继续处理左边的，这里是一个递归的过程</span><br><span class="line">	quicksort(i+1,right);//继续处理右边的，这里是一个递归的过程 </span><br><span class="line">&#125; </span><br><span class="line"> </span><br><span class="line">int main() &#123;</span><br><span class="line">    int i,j,t;     //读入数据</span><br><span class="line">    scanf(&quot;%d&quot;,&amp;n);</span><br><span class="line">    for(i=1;i&lt;=n;i++) </span><br><span class="line">	    scanf(&quot;%d&quot;,&amp;a[i]); </span><br><span class="line"> </span><br><span class="line">    quicksort(1,n); //快速排序调用           </span><br><span class="line">	//输出排序后的结果     </span><br><span class="line">	for(i=1;i&lt;=n;i++)</span><br><span class="line">	    printf(&quot;%d &quot;,a[i]); </span><br><span class="line"> </span><br><span class="line">    getchar();</span><br><span class="line">	getchar();</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/算法学习/">算法学习</a><a class="article-category-link" href="/categories/算法学习/《啊哈-算法》/">《啊哈!算法》</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-罗马数字转整数" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/14/罗马数字转整数/" class="article-date">
+      <time datetime="2019-03-14T14:26:42.000Z" itemprop="datePublished">2019-03-14</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/14/罗马数字转整数/">罗马数字转整数</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="罗马数字转整数"><a href="#罗马数字转整数" class="headerlink" title="罗马数字转整数"></a>罗马数字转整数</h1><h2 id="罗马数字包含以下七种字符-I：-V，-X，-L，C，-，D-和-M。"><a href="#罗马数字包含以下七种字符-I：-V，-X，-L，C，-，D-和-M。" class="headerlink" title="罗马数字包含以下七种字符  I：  V，  X，  L，C， ，D 和  M。"></a>罗马数字包含以下七种字符  I：  V，  X，  L，C， ，D 和  M。</h2><pre><code>字符     数值
+I        1
+V        5
+X        10
+L        50
+C        100
+D        500
+M        1000
+</code></pre><p>例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，<br>所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+<ol>
+<li>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。</li>
+<li>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。</li>
+<li>C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。<br>给定一个罗马数字，将其转换成整数。输入确保在 1 到 3999 的范围内。</li>
+</ol>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1:"></a>示例 1:</h2><p>输入: “III”<br>输出: 3</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2:"></a>示例 2:</h2><p>输入: “IV”<br>输出: 4</p>
+<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3:"></a>示例 3:</h2><p>输入: “IX”<br>输出: 9</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例 4:"></a>示例 4:</h2><p>输入: “LVIII”<br>输出: 58<br>解释: L = 50, V= 5, III = 3.</p>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例 5:"></a>示例 5:</h2><p>输入: “MCMXCIV”<br>输出: 1994<br>解释: M = 1000, CM = 900, XC = 90, IV = 4.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">	</span><br><span class="line">	int romanToInt(char *s);</span><br><span class="line">	int ff(char s); </span><br><span class="line">	char s[10];</span><br><span class="line">	printf(&quot;hello ?\n&quot;);</span><br><span class="line">	gets(s);</span><br><span class="line"></span><br><span class="line">	printf(&quot;%d&quot;,romanToInt(s));</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int ff(char s)&#123;</span><br><span class="line">    char a[] =&#123;&apos;I&apos;,&apos;V&apos;,&apos;X&apos;,&apos;L&apos;,&apos;C&apos;,&apos;D&apos;,&apos;M&apos;&#125;;</span><br><span class="line">	int i,j;</span><br><span class="line">	for (i=0;a[i];i++)&#123;</span><br><span class="line">		if (s == a[i])&#123;</span><br><span class="line">	//	printf(&quot;fanhui%d\n&quot;,i);</span><br><span class="line">		return i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -1;</span><br><span class="line">	</span><br><span class="line">&#125; </span><br><span class="line">int romanToInt(char *s)&#123;</span><br><span class="line">	</span><br><span class="line">	int b[] =&#123;1,5,10,50,100,500,1000&#125;;</span><br><span class="line">	int i,J,ss=0;</span><br><span class="line">	for (i=0;s[i];i++)&#123;</span><br><span class="line">		printf(&quot;判断 %c\n&quot;,s[i]);</span><br><span class="line"> 		 		if(s[i+1] == 0)&#123;</span><br><span class="line">				  </span><br><span class="line">		            ss+=b[ff(s[i])];</span><br><span class="line">		            break;</span><br><span class="line">		        &#125;</span><br><span class="line">		if(ff(s[i])&lt;ff(s[i+1]))&#123;//前面DA于后面的</span><br><span class="line">		 printf(&quot;3比较 %c %c\n&quot;,s[i],s[i+1]);</span><br><span class="line">		  J = b[ff(s[i+1])]-b[ff(s[i])];</span><br><span class="line">		  	ss += J ;</span><br><span class="line">		  	i++;</span><br><span class="line">		  	printf(&quot;3jia%d\n&quot;,J);</span><br><span class="line">		  	continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;//两个相等的 </span><br><span class="line">		if(ff(s[i])==ff(s[i+1]))	&#123;</span><br><span class="line">			printf(&quot;2比较 %c %c\n&quot;,s[i],s[i+1]);</span><br><span class="line">		  ss+=b[ff(s[i])];</span><br><span class="line">		 printf(&quot;2jia%d\n&quot;,b[ff(s[i])]); </span><br><span class="line">		&#125;  </span><br><span class="line">		else</span><br><span class="line">		 &#123;//前一个大于后面一个 </span><br><span class="line">		printf(&quot;1比较 %d %c\n&quot;,s[i],s[i+1]);</span><br><span class="line"></span><br><span class="line">			ss+=b[ff(s[i])]; </span><br><span class="line">			printf(&quot;1jia%d\n&quot;,b[ff(s[i])]); </span><br><span class="line">		  &#125;</span><br><span class="line">		  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    return ss;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-new 1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/01/new 1/" class="article-date">
+      <time datetime="2019-03-01T15:02:10.000Z" itemprop="datePublished">2019-03-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/01/new 1/">初识Docker</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="什么是Docker"><a href="#什么是Docker" class="headerlink" title="什么是Docker"></a>什么是Docker</h2><p>Docker    最初是    dotCloud    公司创始人    Solomon    Hykes    在法国期间发起的一个公司内部项目， 它是基于    dotCloud    公司多年云服务技术的一次革新，并于    2013    年    3    月以    Apache    2.0    授权 协议开源，主要项目代码在    GitHub    上进行维护。Docker    项目后来还加入了    Linux    基金会， 并成立推动    开放容器联盟（OCI）。 Docker    自开源后受到广泛的关注和讨论，至今其    GitHub    项目已经超过    4    万    6    千个星标和一 万多个    fork。甚至由于    Docker    项目的火爆，在    2013    年底，dotCloud    公司决定改名为 Docker。Docker    最初是在    Ubuntu    12.04    上开发实现的；Red    Hat    则从    RHEL    6.5    开始对 Docker    进行支持；Google    也在其    PaaS    产品中广泛应用    Docker。<br>Docker    使用    Google    公司推出的    Go    语言    进行开发实现，基于    Linux    内核的 cgroup，namespace，以及    AUFS    类的    Union    FS    等技术，对进程进行封装隔离，属于    操作 系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容 器。最初实现是基于    LXC，从    0.7    版本以后开始去除    LXC，转而使用自行开发的 libcontainer，从    1.11    开始，则进一步演进为使用    runC    和    containerd。<br>Docker    在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极 大的简化了容器的创建和维护。使得    Docker    技术比虚拟机技术更为轻便、快捷。<br>下面的图片比较了    Docker    和传统虚拟化方式的不同之处。传统虚拟机技术是虚拟出一套硬件 后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程 直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比 传统虚拟机更为轻便。</p>
+<h2 id="为什么要使用Docker"><a href="#为什么要使用Docker" class="headerlink" title="为什么要使用Docker"></a>为什么要使用Docker</h2><p>作为一种新兴的虚拟化方式，Docker    跟传统的虚拟化方式相比具有众多的优势。<br>更高效的利用系统资源<br>由于容器不需要进行硬件虚拟以及运行完整操作系统等额外开销，Docker    对系统资源的利用 率更高。无论是应用执行速度、内存损耗或者文件存储速度，都要比传统虚拟机技术更高 效。因此，相比虚拟机技术，一个相同配置的主机，往往可以运行更多数量的应用。<br>更快速的启动时间<br>传统的虚拟机技术启动应用服务往往需要数分钟，而    Docker    容器应用，由于直接运行于宿主 内核，无需启动完整的操作系统，因此可以做到秒级、甚至毫秒级的启动时间。大大的节约 了开发、测试、部署的时间。<br>一致的运行环境<br>开发过程中一个常见的问题是环境一致性问题。由于开发环境、测试环境、生产环境不一 致，导致有些    bug    并未在开发过程中被发现。而    Docker    的镜像提供了除内核外完整的运行 时环境，确保了应用运行环境一致性，从而不会再出现    「这段代码在我机器上没问题啊」    这 类问题。<br>持续交付和部署<br>对开发和运维（DevOps）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运 行。<br>使用    Docker    可以通过定制应用镜像来实现持续集成、持续交付、部署。开发人员可以通过 Dockerfile    来进行镜像构建，并结合    持续集成(Continuous    Integration)    系统进行集成测试， 而运维人员则可以直接在生产环境中快速部署该镜像，甚至结合    持续部署(Continuous Delivery/Deployment)    系统进行自动部署。 而且使用        Dockerfile        使镜像构建透明化，不仅仅开发团队可以理解应用运行环境，也方便 运维团队理解应用运行所需条件，帮助更好的生产环境中部署该镜像。<br>更轻松的迁移<br>为什么要用    Docker<br>由于    Docker    确保了执行环境的一致性，使得应用的迁移更加容易。Docker    可以在很多平台 上运行，无论是物理机、虚拟机、公有云、私有云，甚至是笔记本，其运行结果是一致的。 因此用户可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行 环境的变化导致应用无法正常运行的情况。<br>更轻松的维护和扩展<br>Docker    使用的分层存储以及镜像的技术，使得应用重复部分的复用更为容易，也使得应用的 维护更新更加简单，基于基础镜像进一步扩展镜像也变得非常简单。此外，Docker    团队同各 个开源项目团队一起维护了一大批高质量的    官方镜像，既可以直接在生产环境使用，又可以 作为基础进一步定制，大大的降低了应用服务的镜像制作成本。</p>
+<h2 id="Docker基本概念"><a href="#Docker基本概念" class="headerlink" title="Docker基本概念"></a>Docker基本概念</h2><h3 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h3><p>我们都知道，操作系统分为内核和用户空间。对于    Linux    而言，内核启动后，会挂载        root    文件系统为其提供用户空间支持。而    Docker    镜像（Image），就相当于是一个        root        文件系 统。比如官方镜像        ubuntu:16.04        就包含了完整的一套    Ubuntu    16.04    最小系统的        root        文件 系统。<br>Docker    镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文 件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像 不包含任何动态数据，其内容在构建之后也不会被改变。<br>分层存储<br>因为镜像包含操作系统完整的        root        文件系统，其体积往往是庞大的，因此在    Docker    设计 时，就充分利用    Union    FS    的技术，将其设计为分层存储的架构。所以严格来说，镜像并非是 像一个    ISO    那样的打包文件，镜像只是一个虚拟的概念，其实际体现并非由一个文件组成， 而是由一组文件系统组成，或者说，由多层文件系统联合组成。<br>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后 一层上的任何改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除 前一层的文件，而是仅在当前层标记为该文件已删除。在最终容器运行的时候，虽然不会看 到这个文件，但是实际上该文件会一直跟随镜像。因此，在构建镜像的时候，需要额外小 心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理 掉。<br>分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为 基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。</p>
+<h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><p>镜像（    Image    ）和容器（    Container    ）的关系，就像是面向对象程序设计中的        类        和        实例    一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删 除、暂停等。<br>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的    命 名空间。因此容器可以拥有自己的        root        文件系统、自己的网络配置、自己的进程空间，甚 至自己的用户    ID    空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一 个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安 全。也因为这种隔离的特性，很多人初学    Docker    时常常会混淆容器和虚拟机。<br>前面讲过镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层， 在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为容 器存储层。<br>容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存 于容器存储层的信息都会随容器删除而丢失。<br>按照    Docker    最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无 状态化。所有的文件写入操作，都应该使用    数据卷（Volume）、或者绑定宿主目录，在这些 位置的读写会跳过容器存储层，直接对宿主（或网络存储）发生读写，其性能和稳定性更 高。<br>数据卷的生存周期独立于容器，容器消亡，数据卷不会消亡。因此，使用数据卷后，容器删 除或者重新运行之后，数据却不会丢失。</p>
+<h3 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h3><p>Docker    Registry<br>镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用 这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker    Registry    就是这样的服 务。<br>一个    Docker    Registry    中可以包含多个仓库（    Repository    ）；每个仓库可以包含多个标签 （    Tag    ）；每个标签对应一个镜像。<br>通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版 本。我们可以通过        &lt;仓库名&gt;:&lt;标签&gt;        的格式来指定具体是这个软件哪个版本的镜像。如果不给 出标签，将以        latest        作为默认标签。<br>以    Ubuntu    镜像    为例，    ubuntu        是仓库的名字，其内包含有不同的版本标签，如，    14.04    ,    16.04    。我们可以通过        ubuntu:14.04    ，或者        ubuntu:16.04        来具体指定所需哪个版本的镜 像。如果忽略了标签，比如        ubuntu    ，那将视为        ubuntu:latest    。<br>仓库名经常以    两段式路径    形式出现，比如        jwilder/nginx-proxy    ，前者往往意味着    Docker Registry    多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使 用的具体    Docker    Registry    的软件或服务。<br>Docker    Registry    公开服务<br>Docker    Registry    公开服务是开放给用户使用、允许用户管理镜像的    Registry    服务。一般这类 公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。<br>最常使用的    Registry    公开服务是官方的    Docker    Hub，这也是默认的    Registry，并拥有大量的 高质量的官方镜像。除此以外，还有    CoreOS    的    Quay.io，CoreOS    相关的镜像存储在这里； Google    的    Google    Container    Registry，Kubernetes    的镜像使用的就是这个服务。<br>由于某些原因，在国内访问这些服务可能会比较慢。国内的一些云服务商提供了针对    Docker Hub    的镜像服务（    Registry    Mirror    ），这些镜像服务被称为加速器。常见的有    阿里云加速 器、DaoCloud    加速器    等。使用加速器会直接从国内的地址下载    Docker    Hub    的镜像，比直接 从    Docker    Hub    下载速度会提高很多。在    安装    Docker    一节中有详细的配置方法。<br>国内也有一些云服务商提供类似于    Docker    Hub    的公开服务。比如    时速云镜像仓库、网易云 镜像服务、DaoCloud    镜像市场、阿里云镜像库    等。<br>私有    Docker    Registry<br>仓库<br>22<br>除了使用公开服务外，用户还可以在本地搭建私有    Docker    Registry。Docker    官方提供了 Docker    Registry    镜像，可以直接使用做为私有    Registry    服务。在    私有仓库    一节中，会有进 一步的搭建私有    Registry    服务的讲解。<br>开源的    Docker    Registry    镜像只提供了    Docker    Registry    API    的服务端实现，足以支持    docker        命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级 功能。在官方的商业化版本    Docker    Trusted    Registry    中，提供了这些高级功能。<br>除了官方的    Docker    Registry    外，还有第三方软件实现了    Docker    Registry    API，甚至提供了用 户界面以及一些高级功能。比如，VMWare    Harbor    和    Sonatype    Nexus。</p>
+<h2 id="安装Docker-win10"><a href="#安装Docker-win10" class="headerlink" title="安装Docker(win10)"></a>安装Docker(win10)</h2><p>Docker可以支持在mac、windows、linux上安装。但是在windows系统中Docker目前仅有win10专业版和企业版的安装包，win7/win8/win10家庭版需要通过docker toolbox来安装。</p>
+<p><a href="http://mirrors.aliyun.com/docker-toolbox/windows/docker-toolbox/" target="_blank" rel="noopener">点击下载docker_toolbox</a><br>docker toolbox是一个工具集，它主要包含以下一些内容：</p>
+<p>Docker CLI 客户端，用来运行docker引擎创建镜像和容器 CLI 客户端，用来运行docker引擎创建镜像和容器<br>Docker Machine. 可以让你在windows的命令行中运行docker引擎命令Docker Machine. 可以让你在windows的命令行中运行docker引擎命令<br>Docker Compose. 用来运行docker-compose命令Docker Compose. 用来运行docker-compose命令<br>Kitematic. 这是Docker的GUI版本Kitematic. 这是Docker的GUI版本<br>Docker QuickStart shell. 这是一个已经配置好Docker的命令行环境Docker QuickStart shell. 这是一个已经配置好Docker的命令行环境<br>Oracle VM Virtualbox. 虚拟机Oracle VM Virtualbox. 虚拟机</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-初识Docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/03/01/初识Docker/" class="article-date">
+      <time datetime="2019-03-01T15:02:10.000Z" itemprop="datePublished">2019-03-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/01/初识Docker/">初识Docker</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="什么是Docker"><a href="#什么是Docker" class="headerlink" title="什么是Docker"></a>什么是Docker</h3><p>Docker    最初是    dotCloud    公司创始人    Solomon    Hykes    在法国期间发起的一个公司内部项目， 它是基于    dotCloud    公司多年云服务技术的一次革新，并于    2013    年    3    月以    Apache    2.0    授权 协议开源，主要项目代码在    GitHub    上进行维护。Docker    项目后来还加入了    Linux    基金会， 并成立推动    开放容器联盟（OCI）。 Docker    自开源后受到广泛的关注和讨论，至今其    GitHub    项目已经超过    4    万    6    千个星标和一 万多个    fork。甚至由于    Docker    项目的火爆，在    2013    年底，dotCloud    公司决定改名为 Docker。Docker    最初是在    Ubuntu    12.04    上开发实现的；Red    Hat    则从    RHEL    6.5    开始对 Docker    进行支持；Google    也在其    PaaS    产品中广泛应用    Docker。<br>Docker    使用    Google    公司推出的    Go    语言    进行开发实现，基于    Linux    内核的 cgroup，namespace，以及    AUFS    类的    Union    FS    等技术，对进程进行封装隔离，属于    操作 系统层面的虚拟化技术。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容 器。最初实现是基于    LXC，从    0.7    版本以后开始去除    LXC，转而使用自行开发的 libcontainer，从    1.11    开始，则进一步演进为使用    runC    和    containerd。<br>Docker    在容器的基础上，进行了进一步的封装，从文件系统、网络互联到进程隔离等等，极 大的简化了容器的创建和维护。使得    Docker    技术比虚拟机技术更为轻便、快捷。<br>下面的图片比较了    Docker    和传统虚拟化方式的不同之处。传统虚拟机技术是虚拟出一套硬件 后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程；而容器内的应用进程 直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比 传统虚拟机更为轻便。</p>
+<h3 id="为什么要使用Docker"><a href="#为什么要使用Docker" class="headerlink" title="为什么要使用Docker"></a>为什么要使用Docker</h3><p>作为一种新兴的虚拟化方式，Docker    跟传统的虚拟化方式相比具有众多的优势。<br>更高效的利用系统资源<br>由于容器不需要进行硬件虚拟以及运行完整操作系统等额外开销，Docker    对系统资源的利用 率更高。无论是应用执行速度、内存损耗或者文件存储速度，都要比传统虚拟机技术更高 效。因此，相比虚拟机技术，一个相同配置的主机，往往可以运行更多数量的应用。<br>更快速的启动时间<br>传统的虚拟机技术启动应用服务往往需要数分钟，而    Docker    容器应用，由于直接运行于宿主 内核，无需启动完整的操作系统，因此可以做到秒级、甚至毫秒级的启动时间。大大的节约 了开发、测试、部署的时间。<br>一致的运行环境<br>开发过程中一个常见的问题是环境一致性问题。由于开发环境、测试环境、生产环境不一 致，导致有些    bug    并未在开发过程中被发现。而    Docker    的镜像提供了除内核外完整的运行 时环境，确保了应用运行环境一致性，从而不会再出现    「这段代码在我机器上没问题啊」    这 类问题。<br>持续交付和部署<br>对开发和运维（DevOps）人员来说，最希望的就是一次创建或配置，可以在任意地方正常运 行。<br>使用    Docker    可以通过定制应用镜像来实现持续集成、持续交付、部署。开发人员可以通过 Dockerfile    来进行镜像构建，并结合    持续集成(Continuous    Integration)    系统进行集成测试， 而运维人员则可以直接在生产环境中快速部署该镜像，甚至结合    持续部署(Continuous Delivery/Deployment)    系统进行自动部署。 而且使用        Dockerfile        使镜像构建透明化，不仅仅开发团队可以理解应用运行环境，也方便 运维团队理解应用运行所需条件，帮助更好的生产环境中部署该镜像。<br>更轻松的迁移<br>为什么要用    Docker<br>17<br>由于    Docker    确保了执行环境的一致性，使得应用的迁移更加容易。Docker    可以在很多平台 上运行，无论是物理机、虚拟机、公有云、私有云，甚至是笔记本，其运行结果是一致的。 因此用户可以很轻易的将在一个平台上运行的应用，迁移到另一个平台上，而不用担心运行 环境的变化导致应用无法正常运行的情况。<br>更轻松的维护和扩展<br>Docker    使用的分层存储以及镜像的技术，使得应用重复部分的复用更为容易，也使得应用的 维护更新更加简单，基于基础镜像进一步扩展镜像也变得非常简单。此外，Docker    团队同各 个开源项目团队一起维护了一大批高质量的    官方镜像，既可以直接在生产环境使用，又可以 作为基础进一步定制，大大的降低了应用服务的镜像制作成本。</p>
+<p>### </p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-JDBC封装数据信息" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/02/27/JDBC封装数据信息/" class="article-date">
+      <time datetime="2019-02-27T13:02:10.000Z" itemprop="datePublished">2019-02-27</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/27/JDBC封装数据信息/">JDBC封装数据信息</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="再遇JDBC"><a href="#再遇JDBC" class="headerlink" title="再遇JDBC~"></a>再遇JDBC~</h3><p>数据表信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//封装数据表的JavaBean </span><br><span class="line">public class Test1 &#123;</span><br><span class="line">    private String user;</span><br><span class="line">    private String password;</span><br><span class="line"></span><br><span class="line">    public String getUser() &#123;</span><br><span class="line">        return user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUser(String user) &#123;</span><br><span class="line">        this.user = user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getPassword() &#123;</span><br><span class="line">        return password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPassword(String password) &#123;</span><br><span class="line">        this.password = password;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;Test1&#123;&quot; +</span><br><span class="line">                &quot;user=&apos;&quot; + user + &apos;\&apos;&apos; +</span><br><span class="line">                &quot;, password=&apos;&quot; + password + &apos;\&apos;&apos; +</span><br><span class="line">                &apos;&#125;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="主要代码实例"><a href="#主要代码实例" class="headerlink" title="主要代码实例"></a>主要代码实例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">import java.sql.*;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class jdbc_6 &#123;</span><br><span class="line"></span><br><span class="line">    public List&lt;Test1&gt; FindAll()&#123;</span><br><span class="line"></span><br><span class="line">        Connection conn = null;</span><br><span class="line">        Statement stemt = null;</span><br><span class="line">        ResultSet rs = null;     // 设立游标</span><br><span class="line">        List&lt;Test1&gt; list = null;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            // 1. 注册驱动</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            // 2.获取数据库连接对象</span><br><span class="line">            conn = DriverManager.getConnection(&quot;jdbc:mysql:///_test?useSSL=false&quot;,&quot;root&quot;,&quot;1111&quot;);</span><br><span class="line">            // 3.获取执行sql对象</span><br><span class="line">            stemt = conn.createStatement();</span><br><span class="line">            String sql = &quot;select * from test1&quot;;</span><br><span class="line">            // 4. 执行sql语句</span><br><span class="line">            rs =  stemt.executeQuery(sql);</span><br><span class="line">            //5. 遍历结果集，封装对象</span><br><span class="line">            Test1 t = null;</span><br><span class="line">            list = new ArrayList&lt;Test1&gt;();</span><br><span class="line">            while(rs.next())&#123;</span><br><span class="line">                // 使用游标进行获取数据表 “user” 的数据</span><br><span class="line">                String user = rs.getString(&quot;user&quot;);</span><br><span class="line">                String password = rs.getString(&quot;password&quot;);</span><br><span class="line">                t = new Test1();</span><br><span class="line">                t.setUser(user);</span><br><span class="line">                t.setPassword(password);</span><br><span class="line">                // 封装集合</span><br><span class="line">                list.add(t);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            if (rs!=null) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    rs.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (stemt!=null) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    stemt.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (conn!=null) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    conn.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        List&lt;Test1&gt; list =new jdbc_6().FindAll();</span><br><span class="line">        System.out.println(list);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDBC/">JDBC</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-初识JDBC" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -294,12 +654,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="详解各个对象"><a href="#详解各个对象" class="headerlink" title="详解各个对象"></a>详解各个对象</h3><h5 id="DriverManager-驱动管理对象"><a href="#DriverManager-驱动管理对象" class="headerlink" title="DriverManager 驱动管理对象"></a>DriverManager 驱动管理对象</h5><h5 id="Connection-数据库连接对象"><a href="#Connection-数据库连接对象" class="headerlink" title="Connection 数据库连接对象"></a>Connection 数据库连接对象</h5><h5 id="Statement-执行sql对象"><a href="#Statement-执行sql对象" class="headerlink" title="Statement 执行sql对象"></a>Statement 执行sql对象</h5><h5 id="ResultSet-结果集对象"><a href="#ResultSet-结果集对象" class="headerlink" title="ResultSet 结果集对象"></a>ResultSet 结果集对象</h5><h5 id="Prepardestatement-执行sql对象"><a href="#Prepardestatement-执行sql对象" class="headerlink" title="Prepardestatement 执行sql对象"></a>Prepardestatement 执行sql对象</h5><h4 id="获取数据库连接对象"><a href="#获取数据库连接对象" class="headerlink" title="获取数据库连接对象"></a>获取数据库连接对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当所连接的数据库为本地时，可忽略中间localhost参数</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://IP:port/&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql:///&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br></pre></td></tr></table></figure>
-<h4 id="编写sql语句"><a href="#编写sql语句" class="headerlink" title="编写sql语句"></a>编写sql语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql =&quot;update test1  set password = 400 where id = 4&quot;;</span><br></pre></td></tr></table></figure>
-<h4 id="利用连接对象来获取-Statement-执行sql对象"><a href="#利用连接对象来获取-Statement-执行sql对象" class="headerlink" title="利用连接对象来获取 Statement 执行sql对象"></a>利用连接对象来获取 Statement 执行sql对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Statement s = conn.createStatement();</span><br></pre></td></tr></table></figure>
-<h4 id="执行sql对象"><a href="#执行sql对象" class="headerlink" title="执行sql对象"></a>执行sql对象</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int count = s.executeUpdate(sql);   //增删改时使用此方法</span><br></pre></td></tr></table></figure>
-<h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)  &#123;</span><br><span class="line">        Statement temt = null; //设置全局变量 try 里conn和temt 方便最后释放</span><br><span class="line">        Connection conn = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;); // 注册驱动</span><br><span class="line">            // 获取数据库连接对象 conn</span><br><span class="line">            conn = DriverManager.getConnection(&quot;jdbc:mysql:///_test?useSSL=false&quot;,&quot;root&quot;,&quot;1111&quot;);</span><br><span class="line">            String sql = &quot;insert into test1 values(\&quot;里斯\&quot;,\&quot;长三\&quot;)&quot;; //插入数据</span><br><span class="line">            // 利用数据库连接对象 进行获取执行sql对象</span><br><span class="line">            temt = conn.createStatement();</span><br><span class="line">            int count = temt.executeUpdate(sql); // 一般情况，返回值为 影响行数</span><br><span class="line">            System.out.println(count);</span><br><span class="line">            if(count&gt;0)</span><br><span class="line">                System.out.println(&quot;success!&quot;);</span><br><span class="line">                else</span><br><span class="line">                    System.out.println(&quot;null!&quot;);</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;finally &#123;</span><br><span class="line">            //避免释放空指针</span><br><span class="line">            if(temt!=null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    temt.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if(conn!=null)&#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    conn.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
+        <h3 id="详解各个对象"><a href="#详解各个对象" class="headerlink" title="详解各个对象"></a>详解各个对象</h3><h5 id="DriverManager-驱动管理对象"><a href="#DriverManager-驱动管理对象" class="headerlink" title="DriverManager 驱动管理对象"></a>DriverManager 驱动管理对象</h5><h5 id="Connection-数据库连接对象"><a href="#Connection-数据库连接对象" class="headerlink" title="Connection 数据库连接对象"></a>Connection 数据库连接对象</h5><h5 id="Statement-执行sql对象"><a href="#Statement-执行sql对象" class="headerlink" title="Statement 执行sql对象"></a>Statement 执行sql对象</h5><h5 id="Prepardestatement-执行sql对象"><a href="#Prepardestatement-执行sql对象" class="headerlink" title="Prepardestatement 执行sql对象"></a>Prepardestatement 执行sql对象</h5><h5 id="DriverManager-驱动管理对象获取-Connection-数据库连接对象"><a href="#DriverManager-驱动管理对象获取-Connection-数据库连接对象" class="headerlink" title="DriverManager 驱动管理对象获取 Connection 数据库连接对象"></a>DriverManager 驱动管理对象获取 Connection 数据库连接对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">当所连接的数据库为本地时，可忽略中间localhost参数</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql://IP:port/&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br><span class="line">Connection conn = DriverManager.getConnection(&quot;jdbc:mysql:///&lt;database_name&gt;?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br></pre></td></tr></table></figure>
+<h5 id="编写sql语句"><a href="#编写sql语句" class="headerlink" title="编写sql语句"></a>编写sql语句</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String sql =&quot;update test1  set password = 400 where id = 4&quot;;</span><br></pre></td></tr></table></figure>
+<h5 id="利用连接对象来获取-Statement-执行sql对象"><a href="#利用连接对象来获取-Statement-执行sql对象" class="headerlink" title="利用连接对象来获取 Statement 执行sql对象"></a>利用连接对象来获取 Statement 执行sql对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Statement s = conn.createStatement();</span><br></pre></td></tr></table></figure>
+<h5 id="执行sql对象"><a href="#执行sql对象" class="headerlink" title="执行sql对象"></a>执行sql对象</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int count = s.executeUpdate(sql);   //增删改时使用此方法</span><br></pre></td></tr></table></figure>
+<h5 id="ResultSet-结果集对象，封装查询结果"><a href="#ResultSet-结果集对象，封装查询结果" class="headerlink" title="ResultSet 结果集对象，封装查询结果"></a>ResultSet 结果集对象，封装查询结果</h5><p>next()方法可以将游标向下移动</p>
+<h5 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        Connection conn = null;</span><br><span class="line">        Statement temt = null;</span><br><span class="line">        ResultSet re = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</span><br><span class="line">            conn = DriverManager.getConnection(&quot;jdbc:mysql:///_test?useSSL=false&quot;, &quot;root&quot;, &quot;1111&quot;);</span><br><span class="line">            temt = conn.createStatement();</span><br><span class="line">            String sql = &quot;select * from  test1&quot;;</span><br><span class="line">            re = temt.executeQuery(sql);</span><br><span class="line">            while (re.next()) &#123;</span><br><span class="line">                String user = re.getString(&quot;user&quot;);</span><br><span class="line">                String password = re.getString(&quot;password&quot;);</span><br><span class="line">                System.out.println(user + &quot;---&quot; + password);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            if (re != null) &#123;</span><br><span class="line">                try &#123;</span><br><span class="line">                    re.close();</span><br><span class="line">                &#125; catch (SQLException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                if (temt != null) &#123;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        temt.close();</span><br><span class="line">                    &#125; catch (SQLException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (conn != null) &#123;</span><br><span class="line">                        try &#123;</span><br><span class="line">                            conn.close();</span><br><span class="line">                        &#125; catch (SQLException e) &#123;</span><br><span class="line">                            e.printStackTrace();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -614,216 +974,10 @@
 
 
   
-    <article id="post-常见各种排序算法" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2019/02/19/常见各种排序算法/" class="article-date">
-      <time datetime="2019-02-19T04:00:07.000Z" itemprop="datePublished">2019-02-19</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/19/常见各种排序算法/">常见各种排序算法</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>撒大大打发发发大幅度阿凡达士大夫</p>
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>撒大大打发发发大幅度阿凡达士大夫</p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>撒大大打发发发大幅度阿凡达士大夫</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/算法学习/">算法学习</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/02/17/hexo/" class="article-date">
-      <time datetime="2019-02-17T06:56:06.000Z" itemprop="datePublished">2019-02-17</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/17/hexo/">Hexo编辑教程 （博客标题）</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="文章标题使用"><a href="#文章标题使用" class="headerlink" title="文章标题使用"></a>文章标题使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#这是一级标题，使用&quot;#&quot;标记</span><br><span class="line">## 这是二级标题，使用&quot;##&quot;标记</span><br><span class="line">### 这是三级标题，使用&quot;###&quot;标记</span><br><span class="line">####  这是四级标题，使用&quot;####&quot;标记</span><br><span class="line">##### 这是五级标题，使用&quot;#####&quot;标记</span><br></pre></td></tr></table></figure>
-<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">**加粗字体（前后两个*包围）**</span><br><span class="line">*斜体（前后一个*包围）*</span><br></pre></td></tr></table></figure>
-<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用超链接时，用“[]”包围链接对象，后面紧跟用“（）”包围的链接url。</span><br><span class="line">例如 [百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
-<p> 点击此处，将链接至百度页面👉<a href="http://baidu.com" target="_blank" rel="noopener">百度</a></p>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 英文半角状态下使用前后各一个``` 来包围代码 </span><br><span class="line">print(&quot;hello,world!&quot;)</span><br></pre></td></tr></table></figure>
-<p><em>无序1
-</em>无序2</p>
-<p>1.有序1<br>2.有序2<br>‘内嵌代码’<br>···<br>daimakuai<br>···</p>
-<blockquote>
-<p>引用</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/教程/">教程</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/02/17/hello-world/" class="article-date">
-      <time datetime="2019-02-17T04:37:27.101Z" itemprop="datePublished">2019-02-17</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 </div>
