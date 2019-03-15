@@ -190,7 +190,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Docker/" style="font-size: 20px;">Docker</a> <a href="/tags/JDBC/" style="font-size: 20px;">JDBC</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Ubuntu/" style="font-size: 20px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 20px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a>
+                        <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/JDBC/" style="font-size: 15px;">JDBC</a> <a href="/tags/Ubuntu/" style="font-size: 15px;">Ubuntu</a> <a href="/tags/fastdfs/" style="font-size: 10px;">fastdfs</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/排序/" style="font-size: 15px;">排序</a> <a href="/tags/数组/" style="font-size: 20px;">数组</a>
                     </div>
                 </section>
                 
@@ -350,8 +350,8 @@
     <article id="post-罗马数字转整数" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/03/14/罗马数字转整数/" class="article-date">
-      <time datetime="2019-03-14T14:26:42.000Z" itemprop="datePublished">2019-03-14</time>
+      <a href="/2019/03/15/罗马数字转整数/" class="article-date">
+      <time datetime="2019-03-15T04:13:19.000Z" itemprop="datePublished">2019-03-15</time>
 </a>
 
     </div>
@@ -365,7 +365,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/14/罗马数字转整数/">罗马数字转整数</a>
+      <a class="article-title" href="/2019/03/15/罗马数字转整数/">LeetCode罗马数字转整数</a>
     </h1>
   
 
@@ -376,15 +376,17 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="罗马数字转整数"><a href="#罗马数字转整数" class="headerlink" title="罗马数字转整数"></a>罗马数字转整数</h1><h2 id="罗马数字包含以下七种字符-I：-V，-X，-L，C，-，D-和-M。"><a href="#罗马数字包含以下七种字符-I：-V，-X，-L，C，-，D-和-M。" class="headerlink" title="罗马数字包含以下七种字符  I：  V，  X，  L，C， ，D 和  M。"></a>罗马数字包含以下七种字符  I：  V，  X，  L，C， ，D 和  M。</h2><pre><code>字符     数值
-I        1
-V        5
-X        10
-L        50
-C        100
-D        500
-M        1000
-</code></pre><p>例如， 罗马数字 2 写做 II ，即为两个并列的 1。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，<br>所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+        <h2 id="罗马数字转整数"><a href="#罗马数字转整数" class="headerlink" title="罗马数字转整数"></a>罗马数字转整数</h2><pre><code>罗马数字包含以下七种字符  I：  V，  X，  L，C， ，D 和  M。
+
+   字符     数值
+   I        1
+   V        5
+   X        10
+   L        50
+   C        100
+   D        500
+   M        1000
+</code></pre><p>例如， 罗马数字 2 写做 II ，即为两个并列的 1。<br>12 写做 XII ，即为 X + II 。<br>27 写做  XXVII, 即为 XX + V + II 。<br>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，<br>所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
 <ol>
 <li>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。</li>
 <li>X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。</li>
@@ -395,7 +397,13 @@ M        1000
 <h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3:"></a>示例 3:</h2><p>输入: “IX”<br>输出: 9</p>
 <h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例 4:"></a>示例 4:</h2><p>输入: “LVIII”<br>输出: 58<br>解释: L = 50, V= 5, III = 3.</p>
 <h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例 5:"></a>示例 5:</h2><p>输入: “MCMXCIV”<br>输出: 1994<br>解释: M = 1000, CM = 900, XC = 90, IV = 4.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">	</span><br><span class="line">	int romanToInt(char *s);</span><br><span class="line">	int ff(char s); </span><br><span class="line">	char s[10];</span><br><span class="line">	printf(&quot;hello ?\n&quot;);</span><br><span class="line">	gets(s);</span><br><span class="line"></span><br><span class="line">	printf(&quot;%d&quot;,romanToInt(s));</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int ff(char s)&#123;</span><br><span class="line">    char a[] =&#123;&apos;I&apos;,&apos;V&apos;,&apos;X&apos;,&apos;L&apos;,&apos;C&apos;,&apos;D&apos;,&apos;M&apos;&#125;;</span><br><span class="line">	int i,j;</span><br><span class="line">	for (i=0;a[i];i++)&#123;</span><br><span class="line">		if (s == a[i])&#123;</span><br><span class="line">	//	printf(&quot;fanhui%d\n&quot;,i);</span><br><span class="line">		return i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -1;</span><br><span class="line">	</span><br><span class="line">&#125; </span><br><span class="line">int romanToInt(char *s)&#123;</span><br><span class="line">	</span><br><span class="line">	int b[] =&#123;1,5,10,50,100,500,1000&#125;;</span><br><span class="line">	int i,J,ss=0;</span><br><span class="line">	for (i=0;s[i];i++)&#123;</span><br><span class="line">		printf(&quot;判断 %c\n&quot;,s[i]);</span><br><span class="line"> 		 		if(s[i+1] == 0)&#123;</span><br><span class="line">				  </span><br><span class="line">		            ss+=b[ff(s[i])];</span><br><span class="line">		            break;</span><br><span class="line">		        &#125;</span><br><span class="line">		if(ff(s[i])&lt;ff(s[i+1]))&#123;//前面DA于后面的</span><br><span class="line">		 printf(&quot;3比较 %c %c\n&quot;,s[i],s[i+1]);</span><br><span class="line">		  J = b[ff(s[i+1])]-b[ff(s[i])];</span><br><span class="line">		  	ss += J ;</span><br><span class="line">		  	i++;</span><br><span class="line">		  	printf(&quot;3jia%d\n&quot;,J);</span><br><span class="line">		  	continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;//两个相等的 </span><br><span class="line">		if(ff(s[i])==ff(s[i+1]))	&#123;</span><br><span class="line">			printf(&quot;2比较 %c %c\n&quot;,s[i],s[i+1]);</span><br><span class="line">		  ss+=b[ff(s[i])];</span><br><span class="line">		 printf(&quot;2jia%d\n&quot;,b[ff(s[i])]); </span><br><span class="line">		&#125;  </span><br><span class="line">		else</span><br><span class="line">		 &#123;//前一个大于后面一个 </span><br><span class="line">		printf(&quot;1比较 %d %c\n&quot;,s[i],s[i+1]);</span><br><span class="line"></span><br><span class="line">			ss+=b[ff(s[i])]; </span><br><span class="line">			printf(&quot;1jia%d\n&quot;,b[ff(s[i])]); </span><br><span class="line">		  &#125;</span><br><span class="line">		  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    return ss;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="思路详解"><a href="#思路详解" class="headerlink" title="思路详解"></a>思路详解</h2><pre><code>1. 获取字符串
+2. 逐个判别每个字符串与后面一个字符串的关系.
+2.1. 若前一个小于后一个，则结果加（后一个的值减去前一个的值）。 i++;
+2.2. 若两个相等，结果直接相加当前值。
+2.3. 若前一个大于后一个，结果相加当前值。
+2.4. 若当前为最后一个字符串，结果直接相加并退出。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">int main()&#123;</span><br><span class="line">	</span><br><span class="line">	int romanToInt(char *s);</span><br><span class="line">	int ff(char s); </span><br><span class="line">	char s[10];</span><br><span class="line">	printf(&quot;hello ?\n&quot;);</span><br><span class="line">	gets(s);</span><br><span class="line"></span><br><span class="line">	printf(&quot;\n\n%s转化后的结果: %d\n&quot;,s,romanToInt(s));</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br><span class="line">int ff(char s)&#123;</span><br><span class="line">    char a[] =&#123;&apos;I&apos;,&apos;V&apos;,&apos;X&apos;,&apos;L&apos;,&apos;C&apos;,&apos;D&apos;,&apos;M&apos;&#125;;</span><br><span class="line">	int i,j;</span><br><span class="line">	for (i=0;a[i];i++)&#123;</span><br><span class="line">		if (s == a[i])&#123;</span><br><span class="line">	//	printf(&quot;fanhui%d\n&quot;,i);</span><br><span class="line">		return i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -1;</span><br><span class="line">	</span><br><span class="line">&#125; </span><br><span class="line">int romanToInt(char *s)&#123;</span><br><span class="line">	</span><br><span class="line">	int b[] =&#123;1,5,10,50,100,500,1000&#125;;</span><br><span class="line">	int i,J,ss=0;</span><br><span class="line">	for (i=0;s[i];i++)&#123;</span><br><span class="line">		printf(&quot;正在判断 %c\n&quot;,s[i]);</span><br><span class="line"> 		if(s[i+1] == 0)&#123;  // 判断是否为最后一个 若为最后一个 直接相加  </span><br><span class="line">		    printf(&quot;最后一个：直接相加%d\n&quot;,b[ff(s[i])]); </span><br><span class="line">            ss+=b[ff(s[i])];</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">		if(ff(s[i])&lt;ff(s[i+1]))&#123;//前面DA于后面的</span><br><span class="line">		 printf(&quot;编号3：%c 小于 %c\n&quot;,s[i],s[i+1]);</span><br><span class="line">		  J = b[ff(s[i+1])]-b[ff(s[i])];</span><br><span class="line">		  	ss += J;</span><br><span class="line">		  	i++;</span><br><span class="line">		  	printf(&quot;编号3：结果加%d\n&quot;,J);</span><br><span class="line">		  	continue;</span><br><span class="line">		&#125;</span><br><span class="line">		else&#123;//两个相等的 </span><br><span class="line">			if(ff(s[i])==ff(s[i+1]))&#123;</span><br><span class="line">				printf(&quot;编号2：比较 %c = %c\n&quot;,s[i],s[i+1]);</span><br><span class="line">			    ss+=b[ff(s[i])];</span><br><span class="line">			    printf(&quot;编号2：结果加 %d\n&quot;,b[ff(s[i])]); </span><br><span class="line">			&#125;  </span><br><span class="line">			else&#123;//前一个大于后面一个 </span><br><span class="line">			    printf(&quot;编号1：比较 %c 大于%c\n&quot;,s[i],s[i+1]);</span><br><span class="line">				ss+=b[ff(s[i])]; </span><br><span class="line">				printf(&quot;编号1：结果加 %d\n&quot;,b[ff (s[i])]); </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    return ss;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -403,10 +411,14 @@ M        1000
     <div class="article-info article-info-index">
       
       
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/算法学习/">算法学习</a><a class="article-category-link" href="/categories/算法学习/LeetCode/">LeetCode</a>
+    </div>
+
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数组/">数组</a></li></ul>
     </div>
 
       
